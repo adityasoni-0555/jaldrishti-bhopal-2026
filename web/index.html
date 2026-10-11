@@ -3,98 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JalDrishti (जलदृष्टि): evidence-based water-quality risk ranking of seven Bhopal immersion ghats from 2023–2025 MPPCB monitoring records.">
+  <meta name="theme-color" content="#0f3b33">
   <title>JalDrishti: Bhopal Visarjan Ghat Watch | BMC Decision Support</title>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/source-sans-3-latin-wght-normal.woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/upper-lake-bhopal.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c-4.6 6.2-9 11.4-9 16.4A9 9 0 0 0 25 19.4C25 14.4 20.6 9.2 16 3z' fill='%231f4d45'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
-  <header class="header">
-    <div class="header-container">
-      <div class="header-title-row">
-        <div class="header-brand-group">
-          <div class="brand-badge">Bhopal Municipal Corporation · नगर पालिक निगम भोपाल</div>
-          <h1>JalDrishti (जलदृष्टि): Visarjan Ghat Watch</h1>
-          <p class="header-subtitle">
-            Evidence-Based Water Quality Risk Support for Durga Visarjan Planning (20 October 2026)
-          </p>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+
+  <!-- Top Navigation -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top" aria-label="JalDrishti home">
+        <svg class="nav-logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M16 3c-4.6 6.2-9 11.4-9 16.4A9 9 0 0 0 25 19.4C25 14.4 20.6 9.2 16 3z" fill="currentColor" opacity=".9"/>
+          <path d="M10.5 20.5c1.8 1.4 3.6 1.4 5.5 0s3.7-1.4 5.5 0" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-brand-text">JalDrishti <span class="nav-brand-hi" lang="hi">जलदृष्टि</span></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#ranking">Ghat Ranking</a></li>
+          <li><a href="#chhath">Chhath Readiness</a></li>
+          <li><a href="#emergency">Emergency</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-amber" type="button" onclick="toggleBilingualBrief()" aria-controls="briefSection" aria-expanded="false" id="briefToggleBtn">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z M14 3v5h5 M10 13h6 M10 17h6"/></svg>
+            Bilingual Brief <span class="btn-hi" lang="hi">(प्रशासनिक सारांश)</span>
+          </button>
+          <button class="btn btn-ghost" type="button" onclick="openMethodologyModal()">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4z M20 5h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7z"/></svg>
+            Methodology &amp; Criteria
+          </button>
+          <button class="btn btn-ghost" type="button" onclick="printReport()">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6 M7 17H4v-7h16v7h-3 M7 14h10v7H7z"/></svg>
+            Print Report
+          </button>
         </div>
-        <div class="header-actions">
-          <button class="btn btn-warning" onclick="toggleBilingualBrief()">📋 Bilingual Brief (प्रशासनिक सारांश)</button>
-          <button class="btn btn-outline" onclick="openMethodologyModal()">📖 Methodology & Criteria</button>
-          <button class="btn btn-outline" onclick="window.print()">🖨️ Print Report</button>
-        </div>
-      </div>
+      </nav>
     </div>
   </header>
 
+  <!-- Hero -->
+  <section class="hero" id="top" aria-labelledby="heroTitle">
+    <figure class="hero-media" id="heroMedia">
+      <img class="hero-img" src="assets/upper-lake-bhopal.jpg" width="1920" height="1080"
+           alt="Sunset over Bhopal's Upper Lake (Bada Talaab): small boats on calm water with a wooded island and the far shoreline in silhouette."
+           decoding="async" fetchpriority="high"
+           onerror="this.closest('.hero-media').classList.add('is-fallback'); this.remove();">
+      <figcaption class="hero-credit">
+        Photo: Upper Lake, Bhopal (28 May 2016) by
+        <a href="https://commons.wikimedia.org/wiki/File:Upper_lake,_bhopal_02.jpg" target="_blank" rel="noopener">Darkknight7213</a>,
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>, via Wikimedia Commons. Illustrative only.
+      </figcaption>
+    </figure>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Decision-support prototype for Bhopal Municipal Corporation · <span lang="hi">नगर पालिक निगम भोपाल</span></p>
+      <h1 id="heroTitle" class="hero-title">
+        <span class="hero-title-en">JalDrishti</span>
+        <span class="hero-title-hi" lang="hi">जलदृष्टि</span>
+        <span class="hero-title-sub">Visarjan Ghat Watch</span>
+      </h1>
+      <p class="hero-lede">
+        Evidence-Based Water Quality Risk Support for Durga Visarjan Planning (20 October 2026) —
+        seven Bhopal immersion ghats ranked from 1,524 historical MPPCB test records (2023–2025), every figure traceable to a source PDF page.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-teal btn-lg" href="#ranking">View ghat ranking</a>
+        <button class="btn btn-ghost btn-lg" type="button" onclick="toggleBilingualBrief()">Read bilingual brief</button>
+      </div>
+      <ul class="hero-facts" aria-label="Scope">
+        <li><strong>7</strong> ghats</li>
+        <li><strong>3</strong> festival years</li>
+        <li><strong>13</strong> parameters</li>
+        <li>Historical data · <strong>not live monitoring</strong></li>
+      </ul>
+    </div>
+  </section>
+
   <!-- Provisional Methodology Banner -->
-  <div class="banner-provisional">
-    <div class="banner-icon">⚠️</div>
+  <div class="banner-provisional" role="note">
+    <div class="banner-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 3 2 21h20z M12 10v5 M12 18h.01"/></svg>
+    </div>
     <div class="banner-text">
       <strong>PROVISIONAL OPERATIONAL SCORING METHODOLOGY (2023–2025 HISTORICAL DATA)</strong>
       <p>
-        Statutory limits are official Central Pollution Control Board (CPCB) Class B outdoor bathing criteria (DO &ge; 5.0 mg/l, BOD &le; 3.0 mg/l, pH 6.5–8.5). 
-        The Composite Risk Index (CRI), component weightings, and scaling constants (Peak Lead 1.5 mg/l ceiling, BOD excess 10 mg/l) are provisional operational planning tools developed for BMC officers and remain under review. 
-        <strong>Historical data (2023–2025) cannot guarantee present-day water safety on 20 October 2026. Real-time pre-immersion testing is recommended.</strong>
+        Statutory limits are official Central Pollution Control Board (CPCB) Class B outdoor bathing criteria (DO &ge; 5.0 mg/l, BOD &le; 3.0 mg/l, pH 6.5–8.5).
+        The Composite Risk Index (CRI), component weightings, and scaling constants (Peak Lead 1.5 mg/l ceiling, BOD excess 10 mg/l) are provisional operational planning tools developed for BMC officers and remain under review.
+        <strong class="banner-emph">Historical data (2023–2025) cannot guarantee present-day water safety on 20 October 2026. Real-time pre-immersion testing is recommended.</strong>
       </p>
     </div>
   </div>
 
-  <main class="main-container">
-    
+  <div class="emergency-strip" role="note">
+    <span><strong>Emergency?</strong> Call <a href="tel:112">112</a> · Ambulance <a href="tel:108">108</a> · Fire <a href="tel:101">101</a></span>
+    <span class="emergency-strip-note">JalDrishti does not dispatch emergency services.</span>
+  </div>
+
+  <main class="main-container" id="main" tabindex="-1">
+
     <!-- Basin Overview KPI Cards -->
-    <section class="metrics-grid" id="basinMetrics">
-      <div class="metric-card">
-        <div class="metric-label">Dataset Analyzed</div>
-        <div class="metric-value" id="valTotalRecords">1,524</div>
-        <div class="metric-sub">7 Bhopal Ghats · 3 Years (2023–2025)</div>
+    <section class="section" id="overview" aria-labelledby="overviewTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="overviewTitle">Basin overview <span class="section-title-hi" lang="hi">जल-क्षेत्र सारांश</span></h2>
+        <p class="section-sub">Compliance against CPCB Class B outdoor-bathing limits, all seven ghats combined, 2023–2025.</p>
       </div>
-      <div class="metric-card">
-        <div class="metric-label">Dissolved Oxygen Non-Compliance</div>
-        <div class="metric-value text-danger" id="valDoViol">36.2%</div>
-        <div class="metric-sub">42 of 116 tests &lt; 5.0 mg/l (4x Zero DO anoxia)</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">BOD Organic Non-Compliance</div>
-        <div class="metric-value text-warning" id="valBodViol">89.3%</div>
-        <div class="metric-sub">100 of 112 tests &gt; 3.0 mg/l (Mean: 6.61 mg/l)</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-label">Heavy Metal Tests Evaluated</div>
-        <div class="metric-value text-primary" id="valMetals">480</div>
-        <div class="metric-sub">Pb, Cr, Cu, Zn (174 BDL, 258 detected, Peak Pb: 1.77)</div>
+      <div class="metrics-grid" id="basinMetrics">
+        <div class="metric-card reveal">
+          <div class="metric-label">Dataset Analyzed</div>
+          <div class="metric-value" id="valTotalRecords">1,524</div>
+          <div class="metric-sub">7 Bhopal Ghats · 3 Years (2023–2025)</div>
+        </div>
+        <div class="metric-card metric-card--alert reveal">
+          <div class="metric-label">Dissolved Oxygen Non-Compliance</div>
+          <div class="metric-value text-danger" id="valDoViol">36.2%</div>
+          <div class="metric-sub">42 of 116 tests &lt; 5.0 mg/l (4x Zero DO anoxia)</div>
+        </div>
+        <div class="metric-card metric-card--alert reveal">
+          <div class="metric-label">BOD Organic Non-Compliance</div>
+          <div class="metric-value text-warning" id="valBodViol">89.3%</div>
+          <div class="metric-sub">100 of 112 tests &gt; 3.0 mg/l (Mean: 6.61 mg/l)</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-label">Heavy Metal Tests Evaluated</div>
+          <div class="metric-value text-primary" id="valMetals">480</div>
+          <div class="metric-sub">Pb, Cr, Cu, Zn (174 BDL, 258 detected, Peak Pb: 1.77)</div>
+        </div>
       </div>
     </section>
 
     <!-- Bilingual Administrative Brief Box (Collapsible) -->
-    <section id="briefSection" class="brief-section" style="display: none;">
+    <section id="briefSection" class="brief-section" style="display: none;" aria-labelledby="briefTitle">
       <div class="brief-header">
         <div>
-          <h2 class="brief-title">Bilingual Administrative Brief (प्रशासनिक कार्ययोजना सारांश)</h2>
+          <h2 class="brief-title" id="briefTitle">Bilingual Administrative Brief <span lang="hi">(प्रशासनिक कार्ययोजना सारांश)</span></h2>
           <p class="brief-subtitle">Actionable guidance drafted for the Municipal Commissioner, Bhopal Municipal Corporation</p>
         </div>
         <div class="brief-toolbar">
-          <div class="tab-group">
-            <button class="tab-btn active" id="tabEnBtn" onclick="switchBriefTab('en')">English Brief</button>
-            <button class="tab-btn" id="tabHiBtn" onclick="switchBriefTab('hi')">हिंदी सारांश</button>
+          <div class="tab-group" role="tablist" aria-label="Brief language">
+            <button class="tab-btn active" id="tabEnBtn" role="tab" aria-selected="true" aria-controls="briefContentEn" onclick="switchBriefTab('en')">English Brief</button>
+            <button class="tab-btn" id="tabHiBtn" role="tab" aria-selected="false" aria-controls="briefContentHi" onclick="switchBriefTab('hi')" lang="hi">हिंदी सारांश</button>
           </div>
-          <button class="btn btn-sm btn-primary" onclick="copyBriefText()">📋 Copy Brief</button>
-          <button class="btn btn-sm btn-outline" onclick="downloadBriefFile()">📥 Download (.txt)</button>
-          <button class="btn btn-sm btn-outline" onclick="closeBriefSection()">&times; Close</button>
+          <button class="btn btn-sm btn-teal" type="button" onclick="copyBriefText()">Copy Brief</button>
+          <button class="btn btn-sm btn-ghost" type="button" onclick="downloadBriefFile()">Download (.txt)</button>
+          <button class="btn btn-sm btn-ghost" type="button" onclick="closeBriefSection()" aria-label="Close brief">&times; Close</button>
         </div>
       </div>
+      <p class="brief-status" id="briefStatus" role="status" aria-live="polite"></p>
 
       <div class="brief-content-wrapper">
         <!-- English Brief Content -->
-        <div id="briefContentEn" class="brief-text-panel">
+        <div id="briefContentEn" class="brief-text-panel" role="tabpanel" aria-labelledby="tabEnBtn">
           <div class="memo-header">
+            <span class="memo-draft">DRAFT FOR OFFICIAL REVIEW — prepared by JalDrishti; not an issued BMC order</span><br>
             <strong>OFFICE OF THE COMMISSIONER, BHOPAL MUNICIPAL CORPORATION (BMC)</strong><br>
             <strong>MEMORANDUM | ENVIRONMENTAL SURVEILLANCE & VISARJAN MANAGEMENT</strong><br>
             <strong>DATE:</strong> 11 October 2026 | <strong>EVENT:</strong> Durga Visarjan (20 October 2026)
           </div>
           <p><strong>SUBJECT: Water Quality Risk Hierarchy, Site Warnings & Deployment Directive across 7 Bhopal Immersion Ghats</strong></p>
-          
+
           <p><strong>1. Executive Summary:</strong><br>
           Analysis of 1,524 water tests (2023–2025) monitored by MPPCB against Central Pollution Control Board (CPCB) Class B standards reveals severe oxygen depletion (36.2% non-compliance; 4 complete anoxia readings) and organic overload (89.3% non-compliance). Immediate operational intervention is required to prevent fish kills, severe stench, and toxic paint dispersion.</p>
 
@@ -112,14 +195,15 @@
         </div>
 
         <!-- Hindi Brief Content -->
-        <div id="briefContentHi" class="brief-text-panel" style="display: none;">
+        <div id="briefContentHi" class="brief-text-panel" role="tabpanel" aria-labelledby="tabHiBtn" lang="hi" style="display: none;">
           <div class="memo-header">
+            <span class="memo-draft">आधिकारिक समीक्षा हेतु प्रारूप — JalDrishti द्वारा तैयार; यह नगर निगम का जारी आदेश नहीं है</span><br>
             <strong>आयुक्त कार्यालय, नगर पालिक निगम भोपाल</strong><br>
             <strong>प्रशासनिक निर्देश | पर्यावरण संरक्षण एवं विसर्जन प्रबंधन</strong><br>
             <strong>दिनांक:</strong> 11 अक्टूबर 2026 | <strong>संदर्भ:</strong> दुर्गा विसर्जन (20 अक्टूबर 2026)
           </div>
           <p><strong>विषय: भोपाल के 7 विसर्जन घाटों की जल गुणवत्ता जोखिम रैंकिंग एवं अनिवार्य कार्ययोजना</strong></p>
-          
+
           <p><strong>1. कार्यकारी सारांश:</strong><br>
           मध्य प्रदेश प्रदूषण नियंत्रण बोर्ड (MPPCB) के 2023 से 2025 के 1,524 जल परीक्षणों के केंद्रीय प्रदूषण नियंत्रण बोर्ड (CPCB) क्लास 'B' (स्नान जल) मानकों के आधार पर विश्लेषण से स्पष्ट है कि विसर्जन स्थलों पर गंभीर ऑक्सीजन संकट (36.2% उल्लंघन; 4 बार शून्य DO) तथा जैविक कचरा भार (89.3% उल्लंघन) विद्यमान है। जलीय जीवों के संरक्षण एवं प्रदूषण नियंत्रण हेतु तत्काल संसाधन नियोजन अनिवार्य है।</p>
 
@@ -138,76 +222,396 @@
       </div>
     </section>
 
-    <!-- Interactive Search, Filter & Sort Controls -->
-    <section class="controls-bar">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Search ghat name, water body, or parameter..." oninput="handleFilterChange()">
+    <!-- CRI Composition Chart -->
+    <section class="section panel" id="composition" aria-labelledby="chartTitle">
+      <div class="section-head section-head--row">
+        <div>
+          <h2 class="section-title" id="chartTitle">What drives each ghat's CRI <span class="section-title-hi" lang="hi">जोखिम घटक</span></h2>
+          <p class="section-sub">Provisional CRI (0–100) split into its weighted components: 0.40 &times; oxygen deficit + 0.30 &times; organic load + 0.20 &times; metal hazard + 0.10 &times; lagged impact. Follows the search, filters and sort below.</p>
+        </div>
+        <ul class="chart-legend" aria-label="Chart legend">
+          <li><span class="swatch swatch-do"></span>Oxygen deficit (40%)</li>
+          <li><span class="swatch swatch-bod"></span>Organic load (30%)</li>
+          <li><span class="swatch swatch-metal"></span>Metal hazard (20%)</li>
+          <li><span class="swatch swatch-lagged"></span>Lagged impact (10%)</li>
+        </ul>
       </div>
-      <div class="filter-group">
-        <select id="waterbodyFilter" onchange="handleFilterChange()">
-          <option value="ALL">All Water Bodies</option>
-          <option value="Upper Lake">Upper Lake (बड़ा तालाब)</option>
-          <option value="Lower Lake">Lower Lake (छोटा तालाब)</option>
-          <option value="Shahpura Lake">Shahpura Lake</option>
-          <option value="Kund">Kunds (कुंड)</option>
-          <option value="Hathaikheda dam">Hathaikheda Dam</option>
-        </select>
-        <select id="tierFilter" onchange="handleFilterChange()">
-          <option value="ALL">All Risk Tiers</option>
-          <option value="Tier 2">Tier 2 (High Non-Compliance)</option>
-          <option value="Tier 3">Tier 3 (Moderate Non-Compliance)</option>
-          <option value="Tier 4">Tier 4 (Low Relative Non-Compliance)</option>
-        </select>
-        <select id="sortSelect" onchange="handleFilterChange()">
-          <option value="CRI_DESC">Sort by: Composite Risk (High to Low)</option>
-          <option value="DO_VIOL_DESC">Sort by: Oxygen Deficit % (High to Low)</option>
-          <option value="BOD_AVG_DESC">Sort by: BOD Organic Load (High to Low)</option>
-          <option value="LEAD_PEAK_DESC">Sort by: Peak Lead (High to Low)</option>
-          <option value="NAME_ASC">Sort by: Ghat Name (A to Z)</option>
-        </select>
-        <button class="btn btn-sm btn-outline" onclick="resetFilters()">Reset</button>
+      <div class="cri-chart" id="criChart" role="list" aria-label="Composite Risk Index composition by ghat"></div>
+      <div class="cri-axis-row" aria-hidden="true">
+        <span></span>
+        <div class="cri-axis">
+          <span style="left:0%">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100</span>
+        </div>
+        <span></span>
+      </div>
+      <div class="chart-tooltip" id="chartTooltip" role="tooltip" hidden></div>
+      <details class="chart-table-toggle">
+        <summary>View chart data as a table</summary>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr><th scope="col">Rank</th><th scope="col">Ghat</th><th scope="col">Oxygen sub-score</th><th scope="col">Organic sub-score</th><th scope="col">Metal sub-score</th><th scope="col">Lagged sub-score</th><th scope="col">CRI</th></tr>
+            </thead>
+            <tbody id="chartTableBody"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <!-- Interactive Search, Filter & Sort Controls -->
+    <section class="section" id="ranking" aria-labelledby="rankingTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="rankingTitle">Seven-ghat risk ranking <span class="section-title-hi" lang="hi">घाटवार जोखिम रैंकिंग</span></h2>
+        <p class="section-sub">Rank is fixed by the analytical engine's CRI; sorting only changes display order.</p>
+      </div>
+
+      <div class="controls-bar" role="search">
+        <div class="search-box">
+          <label class="visually-hidden" for="searchInput">Search ghats</label>
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="searchInput" autocomplete="off" placeholder="Search ghat name (English or हिंदी), water body, or parameter..." oninput="handleFilterChange()">
+          <button class="search-clear" id="searchClear" type="button" onclick="clearSearch()" aria-label="Clear search" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="filter-group">
+          <label class="select-wrap">
+            <span class="select-label">Water body</span>
+            <select id="waterbodyFilter" onchange="handleFilterChange()">
+              <option value="ALL">All Water Bodies</option>
+              <option value="Upper Lake">Upper Lake (बड़ा तालाब)</option>
+              <option value="Lower Lake">Lower Lake (छोटा तालाब)</option>
+              <option value="Shahpura Lake">Shahpura Lake</option>
+              <option value="Kund">Kunds (कुंड)</option>
+              <option value="Hathaikheda dam">Hathaikheda Dam</option>
+            </select>
+          </label>
+          <label class="select-wrap">
+            <span class="select-label">Risk tier</span>
+            <select id="tierFilter" onchange="handleFilterChange()">
+              <option value="ALL">All Risk Tiers</option>
+              <option value="Tier 2">Tier 2 (High Non-Compliance)</option>
+              <option value="Tier 3">Tier 3 (Moderate Non-Compliance)</option>
+              <option value="Tier 4">Tier 4 (Low Relative Non-Compliance)</option>
+            </select>
+          </label>
+          <label class="select-wrap">
+            <span class="select-label">Sort by</span>
+            <select id="sortSelect" onchange="handleFilterChange()">
+              <option value="CRI_DESC">Composite Risk (High to Low)</option>
+              <option value="DO_VIOL_DESC">DO Non-Compliance % (High to Low)</option>
+              <option value="BOD_AVG_DESC">Mean BOD (High to Low)</option>
+              <option value="LEAD_PEAK_DESC">Peak Lead (High to Low)</option>
+              <option value="NAME_ASC">Ghat Name (A to Z)</option>
+            </select>
+          </label>
+          <button class="btn btn-ghost btn-reset" type="button" onclick="resetFilters()">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg>
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div class="results-meta">
+        <span id="resultsCount" role="status" aria-live="polite">Showing 7 of 7 ghats</span>
+        <span class="sort-indicator" id="sortLabel">Ordered by Composite Risk Index (CRI)</span>
+      </div>
+
+      <!-- Ranked Ghats Cards List -->
+      <div class="ghats-list" id="ghatsList">
+        <div class="loading-state">Loading analytical engine results from data_output/analysis_results.json...</div>
       </div>
     </section>
 
-    <div class="results-meta">
-      <span id="resultsCount">Showing 7 of 7 ghats</span>
-      <span class="sort-indicator" id="sortLabel">Ordered by Composite Risk Index (CRI)</span>
-    </div>
+    <!-- ================= Chhath Puja ghat readiness (local demo tools) ================= -->
+    <section class="section chhath" id="chhath" aria-labelledby="chhathTitle">
+      <div class="chhath-intro panel">
+        <figure class="chhath-photo" id="chhathPhoto">
+          <img src="assets/chhath-arghya-yamuna-ghat-delhi.jpg" width="1280" height="830" loading="lazy" decoding="async"
+               alt="A devotee in a red and gold sari holds a bamboo soop basket with a coconut and marigolds while offering arghya during Chhath celebrations."
+               onerror="this.closest('.chhath-photo').classList.add('is-fallback'); this.remove();">
+          <figcaption>
+            Chhath arghya at Yamuna Ghat, <strong>Delhi</strong> (27 Oct 2025). Photo by
+            <a href="https://commons.wikimedia.org/wiki/File:Devotee_Offering_Arghya_during_Chhath_Celebrations.jpg" target="_blank" rel="noopener">Goutam1962</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>, via Wikimedia Commons. Not a Bhopal ghat.
+          </figcaption>
+        </figure>
+        <div class="chhath-text">
+          <div class="sunrise" aria-hidden="true"><span class="sunrise-sun"></span><span class="sunrise-water"></span></div>
+          <h2 class="section-title" id="chhathTitle">Chhath Puja ghat readiness <span class="section-title-hi" lang="hi">छठ पूजा घाट तैयारी</span></h2>
+          <p class="section-sub">
+            Planning tools for ghat-side safety: a readiness checklist, a list of additional ghats, a resource directory and an incident log.
+          </p>
+          <div class="demo-notice" role="note">
+            <strong>Local demo records.</strong> Everything you enter here is saved only in this browser (localStorage). It is not shared, not sent to BMC or any authority, and not verified by anyone. It is kept separate from the 2023–2025 historical water-quality dataset.
+            <span lang="hi">यहाँ दर्ज जानकारी केवल इसी ब्राउज़र में सहेजी जाती है; यह किसी अधिकारी को नहीं भेजी जाती।</span>
+          </div>
+          <p class="storage-status" id="storageStatus" role="status"></p>
+        </div>
+      </div>
 
-    <!-- Ranked Ghats Cards List -->
-    <section class="ghats-list" id="ghatsList">
-      <div class="loading-state">Loading analytical engine results from data_output/analysis_results.json...</div>
+      <!-- Readiness checklist -->
+      <div class="panel ops-block" id="readiness" aria-labelledby="readinessTitle">
+        <div class="section-head section-head--row">
+          <div>
+            <h3 class="ops-title" id="readinessTitle">Readiness checklist <span class="section-title-hi" lang="hi">तैयारी सूची</span></h3>
+            <p class="section-sub">Track each safety item as Pending, In progress or Verified. “Verified” here means verified by the person using this browser, not by an authority.</p>
+          </div>
+          <label class="select-wrap ops-ghat-picker">
+            <span class="select-label">Ghat</span>
+            <select id="checklistGhat"></select>
+          </label>
+        </div>
+        <p class="checklist-summary" id="checklistSummary" aria-live="polite"></p>
+        <ul class="checklist" id="checklistList"></ul>
+        <div class="ops-actions">
+          <button class="btn btn-ghost btn-sm" type="button" id="checklistReset">Reset this ghat&rsquo;s checklist</button>
+        </div>
+      </div>
+
+      <div class="ops-grid">
+        <!-- Add Ghat -->
+        <div class="panel ops-block" id="addGhat" aria-labelledby="addGhatTitle">
+          <h3 class="ops-title" id="addGhatTitle">Add a ghat <span class="section-title-hi" lang="hi">घाट जोड़ें</span></h3>
+          <p class="section-sub">For immersion or Chhath sites not in the historical dataset. New ghats get <strong>no water-quality score and no CRI rank</strong>: no monitoring data exists for them here.</p>
+          <form class="ops-form" id="ghatForm" novalidate>
+            <input type="hidden" id="ghatEditId">
+            <div class="field">
+              <label for="ghatName">Ghat name <span class="req">(required)</span></label>
+              <input id="ghatName" name="ghatName" type="text" maxlength="80" autocomplete="off" required aria-describedby="ghatNameErr">
+              <p class="field-error" id="ghatNameErr"></p>
+            </div>
+            <div class="field">
+              <label for="ghatWater">Water body <span class="req">(required)</span></label>
+              <select id="ghatWater" name="ghatWater" required aria-describedby="ghatWaterErr">
+                <option value="">Select…</option>
+                <option>Upper Lake (बड़ा तालाब)</option>
+                <option>Lower Lake (छोटा तालाब)</option>
+                <option>Shahpura Lake</option>
+                <option>Kaliyasot / Kerwa area</option>
+                <option>Artificial kund / tank</option>
+                <option>Other</option>
+              </select>
+              <p class="field-error" id="ghatWaterErr"></p>
+            </div>
+            <div class="field">
+              <label for="ghatArea">Locality / ward <span class="opt">(optional)</span></label>
+              <input id="ghatArea" name="ghatArea" type="text" maxlength="80" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="ghatFootfall">Expected footfall <span class="opt">(optional, people)</span></label>
+              <input id="ghatFootfall" name="ghatFootfall" type="number" min="0" max="1000000" step="1" inputmode="numeric" aria-describedby="ghatFootfallErr">
+              <p class="field-error" id="ghatFootfallErr"></p>
+            </div>
+            <div class="field field--wide">
+              <label for="ghatNotes">Notes <span class="opt">(optional, max 300 characters)</span></label>
+              <textarea id="ghatNotes" name="ghatNotes" rows="2" maxlength="300"></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="ghatSubmit">Add ghat</button>
+              <button class="btn btn-ghost" type="button" id="ghatCancel" hidden>Cancel edit</button>
+            </div>
+            <p class="form-status" id="ghatStatus" role="status" aria-live="polite"></p>
+          </form>
+          <h4 class="ops-subtitle">Added ghats (local demo)</h4>
+          <ul class="record-list" id="ghatList"></ul>
+        </div>
+
+        <!-- Incident report -->
+        <div class="panel ops-block" id="incident" aria-labelledby="incidentTitle">
+          <h3 class="ops-title" id="incidentTitle">Incident log <span class="section-title-hi" lang="hi">घटना दर्ज करें</span></h3>
+          <div class="emergency-callout" role="note">
+            <strong>Emergency? Call <a href="tel:112">112</a> now.</strong> This form does not alert police, ambulance, fire, divers or BMC. Reports stay in this browser only.
+          </div>
+          <form class="ops-form" id="incidentForm" novalidate>
+            <div class="field">
+              <label for="incGhat">Ghat <span class="req">(required)</span></label>
+              <select id="incGhat" required aria-describedby="incGhatErr"></select>
+              <p class="field-error" id="incGhatErr"></p>
+            </div>
+            <div class="field">
+              <label for="incType">Type <span class="req">(required)</span></label>
+              <select id="incType" required aria-describedby="incTypeErr">
+                <option value="">Select…</option>
+                <option>Slippery or broken steps</option>
+                <option>Lighting failure</option>
+                <option>Missing or damaged barrier</option>
+                <option>Deep-water warning missing</option>
+                <option>Crowding / congestion</option>
+                <option>Injury needing first aid</option>
+                <option>Sanitation or waste problem</option>
+                <option>Visible water pollution</option>
+                <option>Other</option>
+              </select>
+              <p class="field-error" id="incTypeErr"></p>
+            </div>
+            <div class="field">
+              <label for="incTime">Time observed <span class="req">(required)</span></label>
+              <input id="incTime" type="datetime-local" required aria-describedby="incTimeErr">
+              <p class="field-error" id="incTimeErr"></p>
+            </div>
+            <div class="field">
+              <label for="incContact">Your phone <span class="opt">(optional, 10 digits)</span></label>
+              <input id="incContact" type="tel" inputmode="tel" maxlength="14" autocomplete="tel" aria-describedby="incContactErr">
+              <p class="field-error" id="incContactErr"></p>
+            </div>
+            <div class="field field--wide">
+              <label for="incDesc">What happened? <span class="req">(required, 10–500 characters)</span></label>
+              <textarea id="incDesc" rows="3" maxlength="500" required aria-describedby="incDescErr"></textarea>
+              <p class="field-error" id="incDescErr"></p>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Save to local log</button>
+            </div>
+            <p class="form-status" id="incStatus" role="status" aria-live="polite"></p>
+          </form>
+          <h4 class="ops-subtitle">Logged incidents (local demo, not sent)</h4>
+          <ul class="record-list" id="incidentList"></ul>
+        </div>
+      </div>
+
+      <!-- Resource directory -->
+      <div class="panel ops-block" id="resources" aria-labelledby="resourcesTitle">
+        <h3 class="ops-title" id="resourcesTitle">Resource directory <span class="section-title-hi" lang="hi">संसाधन सूची</span></h3>
+        <p class="section-sub">Volunteers, workers, first-aid points, divers and rescue teams for each ghat. JalDrishti lists an entry only with an official source. No verified roster has been published for 2026 yet, so these lists are intentionally empty.</p>
+        <ul class="resource-grid" id="resourceGrid"></ul>
+      </div>
+    </section>
+
+    <!-- ================= Emergency services ================= -->
+    <section class="section panel emergency" id="emergency" aria-labelledby="emergencyTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="emergencyTitle">Emergency services <span class="section-title-hi" lang="hi">आपातकालीन सेवाएँ</span></h2>
+        <p class="section-sub"><strong>JalDrishti does not dispatch emergency services</strong>, track ambulances or confirm that rescue teams are available. Tap a number to call the public service directly.</p>
+        <p class="section-sub" lang="hi">JalDrishti कोई आपातकालीन सेवा नहीं भेजता। सीधे कॉल करने के लिए नंबर पर टैप करें।</p>
+      </div>
+      <ul class="emergency-list">
+        <li class="emergency-card emergency-card--primary">
+          <a class="emergency-tel" href="tel:112" aria-label="Call 112, emergency response">112</a>
+          <div>
+            <h3 class="contact-name">Emergency response <span class="contact-name-hi" lang="hi">आपातकालीन सहायता</span></h3>
+            <p class="contact-role">Dial 112 (MP Police ERSS): police, with links to fire (101) and health (108). 24/7 in all districts.</p>
+            <a class="contact-source" href="https://dial112.mppolice.gov.in/" target="_blank" rel="noopener">Source: dial112.mppolice.gov.in</a>
+          </div>
+        </li>
+        <li class="emergency-card">
+          <a class="emergency-tel" href="tel:108" aria-label="Call 108, ambulance">108</a>
+          <div>
+            <h3 class="contact-name">Ambulance <span class="contact-name-hi" lang="hi">एम्बुलेंस</span></h3>
+            <p class="contact-role">Emergency ambulance service.</p>
+            <a class="contact-source" href="https://bhopal.nic.in/en/helpline/" target="_blank" rel="noopener">Source: District Bhopal helplines</a>
+          </div>
+        </li>
+        <li class="emergency-card">
+          <a class="emergency-tel" href="tel:101" aria-label="Call 101, fire service">101</a>
+          <div>
+            <h3 class="contact-name">Fire service <span class="contact-name-hi" lang="hi">अग्निशमन</span></h3>
+            <p class="contact-role">Fire emergency.</p>
+            <a class="contact-source" href="https://bhopal.nic.in/en/helpline/" target="_blank" rel="noopener">Source: District Bhopal helplines</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Useful Contacts -->
+    <section class="section panel contacts" id="contacts" aria-labelledby="contactsTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="contactsTitle">Useful Contacts <span class="section-title-hi" lang="hi">जरूरी संपर्क</span></h2>
+        <p class="section-sub">
+          These are existing public contacts of government offices, listed on their official websites. They are <strong>not a dedicated JalDrishti helpline</strong>, and JalDrishti is not affiliated with them.
+        </p>
+        <p class="section-sub" lang="hi">
+          ये सरकारी कार्यालयों के मौजूदा सार्वजनिक संपर्क हैं, जो उनकी आधिकारिक वेबसाइटों पर दिए गए हैं। यह JalDrishti की कोई अलग हेल्पलाइन <strong>नहीं</strong> है।
+        </p>
+      </div>
+      <ul class="contact-list">
+        <li class="contact-card">
+          <h3 class="contact-name">Bhopal Municipal Corporation <span class="contact-name-hi" lang="hi">नगर पालिक निगम भोपाल</span></h3>
+          <p class="contact-role">Commissioner's office, Harshwardhan Complex, Mata Mandir, Bhopal</p>
+          <p class="contact-phones">
+            <a class="contact-tel" href="tel:+917552701222" aria-label="Call Bhopal Municipal Corporation, 0755-2701222">0755-2701222</a>
+          </p>
+          <a class="contact-source" href="https://bhopal.nic.in/en/public-utility/bhopal-municipal-corporation/" target="_blank" rel="noopener">Source: District Bhopal (bhopal.nic.in)</a>
+        </li>
+        <li class="contact-card">
+          <h3 class="contact-name">MP Pollution Control Board, Regional Office Bhopal <span class="contact-name-hi" lang="hi">म.प्र. प्रदूषण नियंत्रण बोर्ड, क्षेत्रीय कार्यालय भोपाल</span></h3>
+          <p class="contact-role">E-5, Paryavaran Parisar, Arera Colony, Bhopal: water-quality and pollution matters</p>
+          <p class="contact-phones">
+            <a class="contact-tel" href="tel:+917552466392" aria-label="Call MPPCB Regional Office Bhopal, 0755-2466392">0755-2466392</a>
+            <a class="contact-tel" href="tel:+917554278342" aria-label="Call MPPCB Regional Office Bhopal, 0755-4278342">0755-4278342</a>
+          </p>
+          <a class="contact-source" href="https://www.mppcb.mp.gov.in/pdf/PCBADDTEL14.pdf" target="_blank" rel="noopener">Source: MPPCB office address list (PDF)</a>
+        </li>
+        <li class="contact-card">
+          <h3 class="contact-name">Madhya Pradesh CM Helpline <span class="contact-name-hi" lang="hi">मुख्यमंत्री हेल्पलाइन</span></h3>
+          <p class="contact-role">State public grievance helpline</p>
+          <p class="contact-phones">
+            <a class="contact-tel" href="tel:181" aria-label="Call Madhya Pradesh CM Helpline, 181">181</a>
+          </p>
+          <a class="contact-source" href="https://bhopal.nic.in/en/helpline/" target="_blank" rel="noopener">Source: District Bhopal helplines (bhopal.nic.in)</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Sources & Attribution -->
+    <section class="section panel sources" id="sources" aria-labelledby="sourcesTitle">
+      <h2 class="section-title" id="sourcesTitle">Sources, limits &amp; attribution <span class="section-title-hi" lang="hi">स्रोत एवं सीमाएँ</span></h2>
+      <div class="sources-grid">
+        <div>
+          <h3>Monitoring evidence</h3>
+          <ul>
+            <li>MPPCB idol-immersion monitoring reports, 2023, 2024 and 2025 (Ganesh &amp; Durga Visarjan), parsed to <code>bhopal_ghats_2023_2025.csv</code>. Each parameter row in a ghat's evidence panel cites the report year and PDF page.</li>
+            <li>CPCB Water Quality Criteria, Class B (Outdoor Bathing, Organised): <code>cpcb_water_quality_criteria.csv</code>.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What this tool is not</h3>
+          <ul>
+            <li>Not real-time monitoring. All readings are historical (2023–2025) and cannot establish current water safety.</li>
+            <li>Not an official BMC, MPPCB or CPCB publication or endorsement. The CRI is a provisional planning method under review.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Image credits</h3>
+          <p>Chhath photograph: “<a href="https://commons.wikimedia.org/wiki/File:Devotee_Offering_Arghya_during_Chhath_Celebrations.jpg" target="_blank" rel="noopener">Devotee Offering Arghya during Chhath Celebrations</a>” by Goutam1962, licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>. Taken at Yamuna Ghat, Delhi, in 2025, not in Bhopal.</p>
+          <p>Hero photograph: “<a href="https://commons.wikimedia.org/wiki/File:Upper_lake,_bhopal_02.jpg" target="_blank" rel="noopener">Upper lake, bhopal 02</a>” by Darkknight7213, licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>. Uses the Wikimedia 1920px rendition, shown beneath a light overlay on the left side for text legibility. Shown for place context only; it does not depict a monitored ghat or its water quality.</p>
+        </div>
+      </div>
     </section>
 
   </main>
 
+  <footer class="site-footer">
+    <p>JalDrishti (<span lang="hi">जलदृष्टि</span>) · Claude Impact Lab Bhopal 2026 · Track 2: Visarjan Ghat Watch</p>
+  </footer>
+
   <!-- Evidence & Chemistry Modal -->
-  <div class="modal-overlay" id="detailModal">
+  <div class="modal-overlay" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalGhatTitle" hidden>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      
+      <button class="modal-close" type="button" onclick="closeModal()" aria-label="Close evidence panel">&times;</button>
+
       <div class="modal-header-area">
+        <p class="modal-kicker">Source evidence</p>
         <h2 id="modalGhatTitle" class="modal-title">Ghat Evidence & Chemistry Drilldown</h2>
         <p id="modalGhatSub" class="modal-sub">Source traceability from official MPPCB reports</p>
       </div>
-      
+
       <div id="modalAlerts" class="modal-alerts-area"></div>
 
       <!-- Parameter Chemistry Table -->
-      <div class="modal-section-title">Measured Chemical & Physical Parameters (All 13 Parameters)</div>
+      <h3 class="modal-section-title">Measured Chemical & Physical Parameters (All 13 Parameters)</h3>
       <div class="table-responsive">
         <table id="modalParamTable">
           <thead>
             <tr>
-              <th>Parameter</th>
-              <th>Unit</th>
-              <th>Valid Tests</th>
-              <th>Min / Max</th>
-              <th>Mean (Avg)</th>
-              <th>CPCB Class B Standard</th>
-              <th>Violations</th>
-              <th>Sample Citation (PDF Page)</th>
+              <th scope="col">Parameter</th>
+              <th scope="col">Unit</th>
+              <th scope="col">Valid Tests</th>
+              <th scope="col">Min / Max</th>
+              <th scope="col">Mean (Avg)</th>
+              <th scope="col">CPCB Class B Standard</th>
+              <th scope="col">Violations</th>
+              <th scope="col">Sample Citation (PDF Page)</th>
             </tr>
           </thead>
           <tbody id="modalParamBody">
@@ -217,24 +621,24 @@
       </div>
 
       <!-- Phase Trajectory Progression Table -->
-      <div class="modal-section-title" style="margin-top: 24px;">
+      <h3 class="modal-section-title modal-section-title--spaced">
         Phase Progression & Lagged Organic Impact (Pre &rarr; During &rarr; After Immersion)
-      </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+      </h3>
+      <p class="modal-note">
         Evaluates biological decay delay where post-immersion ('after') BOD rises or DO plunges relative to immersion ('during').
       </p>
       <div class="table-responsive">
         <table>
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Festival</th>
-              <th>Parameter</th>
-              <th>Pre-Immersion</th>
-              <th>During Immersion</th>
-              <th>After Immersion</th>
-              <th>Trajectory Analysis</th>
-              <th>PDF Source Citations</th>
+              <th scope="col">Year</th>
+              <th scope="col">Festival</th>
+              <th scope="col">Parameter</th>
+              <th scope="col">Pre-Immersion</th>
+              <th scope="col">During Immersion</th>
+              <th scope="col">After Immersion</th>
+              <th scope="col">Trajectory Analysis</th>
+              <th scope="col">PDF Source Citations</th>
             </tr>
           </thead>
           <tbody id="modalProgressionBody">
@@ -244,57 +648,64 @@
       </div>
 
       <div class="modal-footer">
-        <button class="btn btn-primary" onclick="closeModal()">Close Evidence Audit</button>
+        <button class="btn btn-teal" type="button" onclick="closeModal()">Close Evidence Audit</button>
       </div>
     </div>
   </div>
 
   <!-- Methodology & Standards Modal -->
-  <div class="modal-overlay" id="methodologyModal">
+  <div class="modal-overlay" id="methodologyModal" role="dialog" aria-modal="true" aria-labelledby="methTitle" hidden>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeMethodologyModal()">&times;</button>
-      <h2 class="modal-title" style="color: var(--primary);">Regulatory Standards vs. Operational Scoring Methodology</h2>
+      <button class="modal-close" type="button" onclick="closeMethodologyModal()" aria-label="Close methodology">&times;</button>
+      <p class="modal-kicker">Methodology &amp; criteria</p>
+      <h2 class="modal-title" id="methTitle">Regulatory Standards vs. Operational Scoring Methodology</h2>
       <p class="modal-sub">Technical documentation of statutory baselines, scoring formulas, and normalization ceilings</p>
-      
-      <div class="methodology-card">
-        <h3>1. Statutory Standards (Official Central Pollution Control Board)</h3>
-        <p>Under <strong>CPCB Class B (Outdoor Bathing Organised)</strong> criteria from <code>cpcb_water_quality_criteria.csv</code>:</p>
-        <ul>
-          <li><strong>Dissolved Oxygen (DO):</strong> Minimum &ge; 5.0 mg/l. Values &lt; 5.0 mg/l cause aquatic hypoxia. 0.0 mg/l is total biological anoxia.</li>
-          <li><strong>Biochemical Oxygen Demand (BOD):</strong> Maximum &le; 3.0 mg/l (5 days at 20&deg;C). Measures organic waste load consuming oxygen.</li>
-          <li><strong>pH:</strong> Permissible range 6.5 to 8.5.</li>
-        </ul>
-      </div>
 
-      <div class="methodology-card">
-        <h3>2. Provisional Operational Composite Risk Index (CRI)</h3>
-        <p>Because the CPCB does not publish a composite multi-parameter index, this model was designed for BMC decision support:</p>
-        <p><code>CRI = (0.40 &times; S_DO) + (0.30 &times; S_BOD) + (0.20 &times; S_Metal) + (0.10 &times; S_Lagged)</code></p>
-        <ul>
-          <li><strong>S_DO (40% Weight):</strong> <code>0.60 &times; (DO Violation Rate %) + 0.40 &times; (Zero DO Anoxia Rate %)</code></li>
-          <li><strong>S_BOD (30% Weight):</strong> <code>0.60 &times; (BOD Violation Rate %) + 0.40 &times; min(100, max(0, (Mean_BOD - 3.0)/10.0 &times; 100))</code>. <em>Excess ceiling of 10.0 mg/l represents BOD = 13.0 mg/l.</em></li>
-          <li><strong>S_Metal (20% Weight):</strong> <code>0.70 &times; (Detection Rate %) + 0.30 &times; (min(1.0, Peak_Lead / 1.5) &times; 100)</code>. <em>Lead ceiling of 1.5 mg/l represents a 15x exceedance of CPCB Schedule VI discharge limits (0.1 mg/l) and 150x exceedance of IS 10500 drinking limits (0.01 mg/l).</em></li>
-          <li><strong>S_Lagged (10% Weight):</strong> Percentage of paired festival events where post-immersion 'after' conditions deteriorated further.</li>
-        </ul>
-      </div>
+      <div class="methodology-grid">
+        <div class="methodology-card methodology-card--statutory">
+          <span class="method-tag method-tag--official">Statutory · official</span>
+          <h3>1. Statutory Standards (Official Central Pollution Control Board)</h3>
+          <p>Under <strong>CPCB Class B (Outdoor Bathing Organised)</strong> criteria from <code>cpcb_water_quality_criteria.csv</code>:</p>
+          <ul>
+            <li><strong>Dissolved Oxygen (DO):</strong> Minimum &ge; 5.0 mg/l. Values &lt; 5.0 mg/l cause aquatic hypoxia. 0.0 mg/l is total biological anoxia.</li>
+            <li><strong>Biochemical Oxygen Demand (BOD):</strong> Maximum &le; 3.0 mg/l (5 days at 20&deg;C). Measures organic waste load consuming oxygen.</li>
+            <li><strong>pH:</strong> Permissible range 6.5 to 8.5.</li>
+          </ul>
+        </div>
 
-      <div class="methodology-card">
-        <h3>3. Data Quality & Integrity Disclosures</h3>
-        <ul>
-          <li><strong>BDL (Below Detection Limit):</strong> Preserved as non-elevated trace detection. Never converted to zero or counted as missing.</li>
-          <li><strong>Missing Data:</strong> Excluded from compliance denominators and surfaced as explicit data gap alerts.</li>
-          <li><strong>Durga 2025 Missing Data:</strong> Bairagarh and Malikhedi lack Durga 2025 tables in the MPPCB report.</li>
-          <li><strong>Rani Kamlapati Site Ambiguity:</strong> Ganesh tables sampled an artificial kund; Durga tables sampled open lake water.</li>
-        </ul>
+        <div class="methodology-card methodology-card--provisional">
+          <span class="method-tag method-tag--provisional">Provisional · under review</span>
+          <h3>2. Provisional Operational Composite Risk Index (CRI)</h3>
+          <p>Because the CPCB does not publish a composite multi-parameter index, this model was designed for BMC decision support:</p>
+          <p class="formula"><code>CRI = (0.40 &times; S_DO) + (0.30 &times; S_BOD) + (0.20 &times; S_Metal) + (0.10 &times; S_Lagged)</code></p>
+          <ul>
+            <li><strong>S_DO (40% Weight):</strong> <code>0.60 &times; (DO Violation Rate %) + 0.40 &times; (Zero DO Anoxia Rate %)</code></li>
+            <li><strong>S_BOD (30% Weight):</strong> <code>0.60 &times; (BOD Violation Rate %) + 0.40 &times; min(100, max(0, (Mean_BOD - 3.0)/10.0 &times; 100))</code>. <em>Excess ceiling of 10.0 mg/l represents BOD = 13.0 mg/l.</em></li>
+            <li><strong>S_Metal (20% Weight):</strong> <code>0.70 &times; (Detection Rate %) + 0.30 &times; (min(1.0, Peak_Lead / 1.5) &times; 100)</code>. <em>Lead ceiling of 1.5 mg/l represents a 15x exceedance of CPCB Schedule VI discharge limits (0.1 mg/l) and 150x exceedance of IS 10500 drinking limits (0.01 mg/l).</em></li>
+            <li><strong>S_Lagged (10% Weight):</strong> Percentage of paired festival events where post-immersion 'after' conditions deteriorated further.</li>
+          </ul>
+        </div>
+
+        <div class="methodology-card">
+          <span class="method-tag">Data quality</span>
+          <h3>3. Data Quality & Integrity Disclosures</h3>
+          <ul>
+            <li><strong>BDL (Below Detection Limit):</strong> Preserved as non-elevated trace detection. Never converted to zero or counted as missing.</li>
+            <li><strong>Missing Data:</strong> Excluded from compliance denominators and surfaced as explicit data gap alerts.</li>
+            <li><strong>Durga 2025 Missing Data:</strong> Bairagarh and Malikhedi lack Durga 2025 tables in the MPPCB report.</li>
+            <li><strong>Rani Kamlapati Site Ambiguity:</strong> Ganesh tables sampled an artificial kund; Durga tables sampled open lake water.</li>
+          </ul>
+        </div>
       </div>
 
       <div class="modal-footer">
-        <button class="btn btn-primary" onclick="closeMethodologyModal()">Understood</button>
+        <button class="btn btn-teal" type="button" onclick="closeMethodologyModal()">Understood</button>
       </div>
     </div>
   </div>
 
   <script src="data.js"></script>
   <script src="app.js"></script>
+  <script src="ghat-ops.js"></script>
 </body>
 </html>
