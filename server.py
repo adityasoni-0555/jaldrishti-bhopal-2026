@@ -15,15 +15,21 @@ WEB_DIR = BASE_DIR / "web"
 DATA_DIR = BASE_DIR / "data_output"
 
 class JalDrishtiHandler(http.server.SimpleHTTPRequestHandler):
+    """Serves web/ as the site root (so every page's relative links work) plus a JSON API."""
+
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=str(BASE_DIR), **kwargs)
+        super().__init__(*args, directory=str(WEB_DIR), **kwargs)
 
     def do_GET(self):
-        # Route root requests to /web/index.html
-        if self.path == "/" or self.path == "":
-            self.path = "/web/index.html"
-        elif self.path == "/api/results" or self.path == "/api/analysis":
-            self.path = "/data_output/analysis_results.json"
+        route = self.path.split("?", 1)[0]
+        if route in ("/api/results", "/api/analysis"):
+            body = (DATA_DIR / "analysis_results.json").read_bytes()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
         return super().do_GET()
 
 def run_server(port=PORT):

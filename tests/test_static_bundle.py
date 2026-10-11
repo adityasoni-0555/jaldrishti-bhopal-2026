@@ -61,5 +61,79 @@ class TestDemoToolsKeepAnalysisSeparate(unittest.TestCase):
         self.assertNotIn("fetch(", js, "Demo tools must not claim to send data anywhere")
 
 
+PAGES = ["index.html", "dashboard.html", "analysis.html", "safety.html", "about.html"]
+
+
+class TestMultiPageSite(unittest.TestCase):
+    """Every page shares the header, footer and emergency strip, and every local link resolves."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.html = {p: (WEB / p).read_text(encoding="utf-8") for p in PAGES}
+
+    def test_all_pages_exist_in_web_and_docs(self):
+        for page in PAGES:
+            self.assertTrue((WEB / page).is_file(), f"web/{page} missing")
+            self.assertTrue((DOCS / page).is_file(), f"docs/{page} missing")
+
+    def test_local_links_and_assets_resolve_on_every_page(self):
+        for page, html in self.html.items():
+            for ref in re.findall(r'(?:src|href)="([^"#:?]+)(?:#[^"]*)?"', html):
+                self.assertTrue((WEB / ref).is_file(), f"{page} references missing file: {ref}")
+
+    def test_in_page_anchors_exist(self):
+        for page, html in self.html.items():
+            for target_page, anchor in re.findall(r'href="([a-z]+\.html)?#([A-Za-z][\w-]*)"', html):
+                target = target_page or page
+                self.assertIn(f'id="{anchor}"', self.html[target], f"{page} links to missing #{anchor} on {target}")
+
+    def test_shared_navigation_with_single_active_page(self):
+        for page, html in self.html.items():
+            nav = html[html.index('<ul class="nav-links">'):html.index("</ul>", html.index('<ul class="nav-links">'))]
+            for target in PAGES:
+                self.assertIn(f'href="{target}"', nav, f"{page} navigation lacks a link to {target}")
+            active = re.findall(r'<a href="([a-z]+\.html)" class="is-active" aria-current="page">', nav)
+            self.assertEqual(active, [page], f"{page} must mark only itself as the current page")
+
+    def test_shared_footer_and_emergency_strip_on_every_page(self):
+        for page, html in self.html.items():
+            self.assertIn('class="site-footer"', html, page)
+            self.assertIn("does not dispatch emergency services", html, page)
+            for number in ("112", "108", "101"):
+                self.assertIn(f'href="tel:{number}"', html, f"{page} lacks tel:{number}")
+            self.assertIn("historical MPPCB readings from 2023–2025", html, f"{page} footer lacks the historical-data note")
+
+    def test_scripts_loaded_where_features_live(self):
+        self.assertIn('src="app.js"', self.html["dashboard.html"])
+        self.assertIn('src="analysis.js"', self.html["analysis.html"])
+        self.assertIn('src="ghat-ops.js"', self.html["safety.html"])
+        for page, html in self.html.items():
+            self.assertIn('src="site.js"', html, page)
+            if 'src="app.js"' in html or 'src="analysis.js"' in html or 'src="ghat-ops.js"' in html:
+                self.assertLess(html.index('src="site.js"'), html.index('src="data.js"'), f"{page}: site.js must load first")
+
+    def test_landing_figures_match_engine_output(self):
+        import json
+        data = json.loads((BASE_DIR / "data_output" / "analysis_results.json").read_text(encoding="utf-8"))
+        landing = self.html["index.html"]
+        self.assertIn(f'{data["total_records"]:,}', landing)
+        self.assertIn(f'{data["basin_compliance"]["bod"]["violation_rate_pct"]}%', landing)
+        self.assertEqual(len(data["ranked_sites"]), 7)
+
+
+class TestAnalysisSourceData(unittest.TestCase):
+    """The analysis page groups cited readings by year; the citations must cover every valid reading."""
+
+    def test_citations_cover_all_valid_readings(self):
+        import json
+        data = json.loads((BASE_DIR / "data_output" / "analysis_results.json").read_text(encoding="utf-8"))
+        for site, profile in data["detailed_profiles"].items():
+            for name in ("Dissolved oxygen", "BOD"):
+                param = profile["parameters"][name]
+                numeric = [c for c in param["citations"] if isinstance(c["value"], (int, float))]
+                self.assertEqual(len(numeric), param["valid_count"], f"{site} {name}")
+                self.assertEqual({c["year"] for c in numeric} - {"2023", "2024", "2025"}, set(), f"{site} {name}")
+
+
 if __name__ == "__main__":
     unittest.main()

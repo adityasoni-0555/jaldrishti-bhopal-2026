@@ -1,5 +1,6 @@
 // JalDrishti: Visarjan Ghat Watch Controller (Phase 3 UI)
 // Bhopal Municipal Corporation Decision Support System
+// Loaded on dashboard.html only. Requires site.js (navigation, HINDI_NAMES) and data.js.
 
 let globalAnalysisData = null;
 let currentGhatList = [];
@@ -7,17 +8,6 @@ let activeBriefLang = "en";
 let lastFocusedBeforeModal = null;
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-// Hindi site names, taken from the bilingual administrative brief
-const HINDI_NAMES = {
-  "Bairagarh (Sant Hirdaram) kund": "संत हिरदाराम (बैरागढ़) विसर्जन कुंड",
-  "Malikhedi kund": "मालीखेड़ी विसर्जन कुंड",
-  "Khatlapura ghat": "खटलापुरा घाट",
-  "Shahpura lake ghat": "शाहपुरा झील घाट",
-  "Rani Kamlapati ghat / Kamla Park kund": "रानी कमलापति / कमला पार्क",
-  "Hathaikheda dam / kund": "हथाईखेड़ा बांध / कुंड",
-  "Prempura ghat": "प्रेमपुरा घाट"
-};
 
 // CRI components: weight, sub-score key and chart colour class (see style.css)
 const CRI_COMPONENTS = [
@@ -35,8 +25,7 @@ function esc(value) {
 
 // Initialize Dashboard
 async function initDashboard() {
-  initNavigation();
-  initReveal();
+  if (!document.getElementById("ghatsList")) return;
   initChartTooltip();
 
   try {
@@ -633,58 +622,6 @@ function downloadBriefFile() {
 function printReport() {
   closeNavMenu();
   window.print();
-}
-
-// Responsive navigation
-function closeNavMenu() {
-  const toggle = document.getElementById("navToggle");
-  if (!toggle) return;
-  toggle.setAttribute("aria-expanded", "false");
-  toggle.setAttribute("aria-label", "Open navigation menu");
-  document.getElementById("siteNav").classList.remove("is-open");
-}
-
-function initNavigation() {
-  const nav = document.getElementById("siteNav");
-  const toggle = document.getElementById("navToggle");
-
-  toggle.addEventListener("click", () => {
-    const open = toggle.getAttribute("aria-expanded") !== "true";
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
-    nav.classList.toggle("is-open", open);
-  });
-
-  document.querySelectorAll(".nav-links a").forEach(a => a.addEventListener("click", closeNavMenu));
-
-  const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 24);
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 1280) closeNavMenu();
-  });
-}
-
-// Entrance animations (skipped entirely when reduced motion is preferred)
-function initReveal() {
-  const items = document.querySelectorAll(".reveal");
-  if (reduceMotion.matches || !("IntersectionObserver" in window)) {
-    items.forEach(el => el.classList.add("is-visible"));
-    return;
-  }
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  items.forEach((el, i) => {
-    el.style.setProperty("--i", i);
-    io.observe(el);
-  });
 }
 
 // Window Event Listeners for Modal Escaping and Backdrop Click

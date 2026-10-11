@@ -26,7 +26,7 @@ Every Ganesh and Durga festival, the MP Pollution Control Board (MPPCB) tests th
 ## The solution
 
 1. **A deterministic analytical engine** ([`engine.py`](engine.py)) reads the 1,524 cleaned readings for 7 Bhopal ghats and checks them against CPCB Class B (outdoor bathing) limits. It keeps "below detection limit" values separate from missing data, and ranks the ghats with a provisional Composite Risk Index (CRI).
-2. **A static decision dashboard** ([`web/`](web/), mirrored in [`docs/`](docs/) for deployment) shows the ranking, the evidence behind every number with PDF page citations, and a bilingual English/Hindi brief for municipal leadership.
+2. **A five-page static website** ([`web/`](web/), mirrored in [`docs/`](docs/) for deployment) shows the ranking, the evidence behind every number with PDF page citations, detailed comparisons, and a bilingual English/Hindi brief for municipal leadership.
 3. **Ghat-side safety tools** for Chhath Puja and immersion days: a readiness checklist, extra ghats, an incident log and verified emergency numbers. Records stay in the user's own browser and are clearly labelled as local demo data.
 
 ---
@@ -42,7 +42,19 @@ Every Ganesh and Durga festival, the MP Pollution Control Board (MPPCB) tests th
 - Data-gap and site-confidence alerts, for example the missing Durga 2025 tables and the Rani Kamlapati / Kamla Park naming ambiguity.
 - Writes [`data_output/analysis_results.json`](data_output/analysis_results.json) and the embedded bundle `web/data.js`.
 
-### Dashboard (`web/index.html`, `web/app.js`, `web/style.css`)
+### Website pages
+
+| Page | Contents | Scripts |
+|---|---|---|
+| `index.html` (Home, entry point) | Hero, project purpose, key benefits, data coverage, historical-vs-current explanation, limitations, links to every page | `site.js` |
+| `dashboard.html` | The analysis dashboard described below: metrics, CRI chart, search, filters, sorting, ghat cards, evidence and methodology dialogs, bilingual brief, print report | `site.js`, `data.js`, `app.js` |
+| `analysis.html` | Basin compliance, ghat comparison table, year-by-year mean DO and BOD (2023–2025, with reading counts), post-immersion impact, CRI method, data sources, limitations | `site.js`, `data.js`, `analysis.js` |
+| `safety.html` | Emergency numbers, general precautions (not an official advisory), public contacts, Chhath readiness tools | `site.js`, `data.js`, `ghat-ops.js` |
+| `about.html` | Mission, system overview, methodology summary, project details and GitHub link | `site.js` |
+
+Every page shares the same header with an active-page marker, a mobile menu, an emergency strip (112 / 108 / 101) and a footer with the historical-data note, GitHub link and image credits. The year-by-year tables are computed in the browser from the engine's cited readings; they do not re-score anything.
+
+### Dashboard (`web/dashboard.html`, `web/app.js`, `web/style.css`)
 - **Basin overview metrics:** records analysed, DO and BOD non-compliance, heavy-metal tests.
 - **CRI chart:** a stacked bar for each ghat showing its four weighted components, with a hover/focus tooltip and a table view.
 - **Search:** by ghat name in English or Hindi, water body, or words in the justification text, with a clear button.
@@ -52,10 +64,10 @@ Every Ganesh and Durga festival, the MP Pollution Control Board (MPPCB) tests th
 - **Methodology dialog:** separates the statutory CPCB limits from the provisional CRI choices.
 - **Bilingual administrative brief:** English and हिंदी tabs, marked as a draft for official review. Can be copied to the clipboard or downloaded as `.txt`.
 - **Print report:** a print layout with the warning, metrics, both brief languages, the chart and all seven cards.
-- **Public contacts with sources:** emergency numbers 112, 108 and 101, plus BMC, the MPPCB Bhopal Regional Office and CM Helpline 181. All are clickable `tel:` links.
+- **Public contacts with sources** (on `safety.html`): emergency numbers 112, 108 and 101, plus BMC, the MPPCB Bhopal Regional Office and CM Helpline 181. All are clickable `tel:` links.
 - **Accessibility and robustness:** responsive layout, keyboard-accessible dialogs, respect for reduced-motion settings, image fallbacks, and a self-hosted Source Sans 3 font.
 
-### Chhath Puja ghat readiness (`web/ghat-ops.js`, local demo records)
+### Chhath Puja ghat readiness (`web/safety.html`, `web/ghat-ops.js`, local demo records)
 - **Readiness checklist:** 8 items per ghat, each Pending, In progress or Verified. Items: lighting, barriers, slippery steps, water-depth warnings, crowd management, first aid, sanitation, waste clearance.
 - **Add a ghat:** validated form with edit and delete. It rejects duplicates, including alternative and Hindi names of the 7 historical ghats. Added ghats get **no water-quality score and no rank**.
 - **Incident log:** validated form (type, time not in the future, description, optional Indian mobile number). It is **not sent to any authority**.
@@ -63,7 +75,7 @@ Every Ganesh and Durga festival, the MP Pollution Control Board (MPPCB) tests th
 - All of this is stored only in the browser's `localStorage`, labelled "Local demo", and kept separate from the historical dataset.
 
 ### Local server (`server.py`)
-- Serves the dashboard at `/` and the analysis JSON at `/api/results`, using only the Python standard library.
+- Serves `web/` as the site root (Home at `/`, every page and asset by relative path) and the analysis JSON at `/api/results`, using only the Python standard library.
 
 ---
 
@@ -106,14 +118,20 @@ Values are taken from `data_output/analysis_results.json`.
 ```text
 bhopal-impact-lab-2026/
 ├── engine.py                    # Analytical engine: CPCB compliance, CRI, ranking, citations
-├── server.py                    # Local server: dashboard at "/", JSON at "/api/results"
-├── index.html                   # Root redirect to web/index.html
+├── server.py                    # Local server: serves web/ at "/", JSON at "/api/results"
+├── index.html                   # Root redirect to web/index.html (for hosts that publish the repo root)
 ├── data_output/
 │   └── analysis_results.json    # Engine output (rankings, profiles, citations)
-├── web/                         # Dashboard source
-│   ├── index.html
-│   ├── style.css
-│   ├── app.js                   # Analysis dashboard: search, filters, chart, dialogs, brief, print
+├── web/                         # Website source (five pages)
+│   ├── index.html               # Home / landing page (entry point)
+│   ├── dashboard.html           # Ranking, indicators, search, filters, chart, evidence, brief, print
+│   ├── analysis.html            # Comparisons, year-by-year readings, CRI method, sources, limitations
+│   ├── safety.html              # Emergency numbers, precautions, contacts, Chhath readiness tools
+│   ├── about.html               # Mission, system overview, project details
+│   ├── style.css                # Shared stylesheet
+│   ├── site.js                  # Shared: navigation menu, reveal animation, Hindi ghat names
+│   ├── app.js                   # Dashboard controller
+│   ├── analysis.js              # Analysis-page tables (grouping of cited readings)
 │   ├── ghat-ops.js              # Chhath readiness tools (local demo records only)
 │   ├── data.js                  # Embedded copy of analysis_results.json (generated by engine.py)
 │   └── assets/                  # Photographs and self-hosted font files
@@ -121,7 +139,7 @@ bhopal-impact-lab-2026/
 ├── tests/
 │   ├── test_engine.py           # 18 tests: boundaries, BDL, missing data, CRI arithmetic, citations
 │   ├── test_server_api.py       # 4 tests: assets, data.js sync, "/" and "/api/results"
-│   └── test_static_bundle.py    # 7 tests: docs/ mirrors web/, asset paths, emergency links, labels
+│   └── test_static_bundle.py    # 15 tests: docs/ mirrors web/, every page's links and assets, shared nav/footer, labels
 ├── tools/                       # Scripts used to extract the CSVs from the MPPCB PDFs (see tools/README.md)
 ├── tracks/
 │   ├── 01-bhumi-vikas-sahayak/  # Track 1 materials from the organisers (not used by this project)
@@ -152,8 +170,8 @@ bhopal-impact-lab-2026/
    ```powershell
    py server.py 8080
    ```
-   Open http://localhost:8080/ in a browser. The raw results are at http://localhost:8080/api/results.
-   You can also open `web\index.html` directly in a browser, because the data is embedded in `web/data.js`.
+   Open http://localhost:8080/ (Home) and use the navigation to reach the Dashboard, Analysis, Safety and About pages. The raw results are at http://localhost:8080/api/results.
+   You can also open `web\index.html` directly in a browser, because the data is embedded in `web/data.js` and all links are relative.
 4. **If you regenerated the analysis or edited `web/`, copy the changes into `docs/`.** The deployed site and `tests/test_static_bundle.py` both expect the two folders to match.
    ```powershell
    Copy-Item -Path web\* -Destination docs -Recurse -Force
@@ -165,7 +183,7 @@ bhopal-impact-lab-2026/
 py -m unittest discover -s tests -p "test_*.py" -v
 ```
 
-Current result: **29 tests, all passing** (18 engine, 4 server/API, 7 static bundle).
+Current result: **37 tests, all passing** (18 engine, 4 server/API, 15 static bundle).
 
 ---
 

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Emergency numbers, public contacts, general ghat-safety precautions and Chhath Puja readiness tools (local demo).">
+  <meta name="theme-color" content="#0b1f3a">
+  <title>Safety | JalDrishti: Bhopal Visarjan Ghat Watch</title>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/source-sans-3-latin-wght-normal.woff2" crossorigin>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c-4.6 6.2-9 11.4-9 16.4A9 9 0 0 0 25 19.4C25 14.4 20.6 9.2 16 3z' fill='%230f766e'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Site header (shared across pages) -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html" aria-label="JalDrishti home">
+        <svg class="nav-logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M16 3c-4.6 6.2-9 11.4-9 16.4A9 9 0 0 0 25 19.4C25 14.4 20.6 9.2 16 3z" fill="currentColor" opacity=".9"/>
+          <path d="M10.5 20.5c1.8 1.4 3.6 1.4 5.5 0s3.7-1.4 5.5 0" fill="none" stroke="#0b1f3a" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-brand-text"><span class="nav-brand-name">JalDrishti <span class="nav-brand-hi" lang="hi">जलदृष्टि</span></span><span class="nav-brand-tag">Visarjan Ghat Watch · Bhopal</span></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="safety.html" class="is-active" aria-current="page">Safety</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+        <a class="nav-emergency" href="tel:112" aria-label="Call 112, emergency response">Emergency <strong>112</strong></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="emergency-strip" role="note">
+    <span><strong>Emergency?</strong> Call <a href="tel:112">112</a> · Ambulance <a href="tel:108">108</a> · Fire <a href="tel:101">101</a></span>
+    <span class="emergency-strip-note">JalDrishti does not dispatch emergency services.</span>
+  </div>
+
+  <main id="main" tabindex="-1">
+
+  <section class="page-hero" aria-labelledby="pageTitle">
+    <div class="page-hero-inner">
+      <p class="page-kicker">Public safety information</p>
+      <h1 class="page-title" id="pageTitle">Safety &amp; emergency <span class="page-title-hi" lang="hi">सुरक्षा एवं आपातकाल</span></h1>
+      <p class="page-lede">Verified public emergency numbers and official contacts, general precautions for ghat visitors, and readiness tools for organisers.</p>
+    </div>
+  </section>
+
+    <div class="main-container">
+    <!-- ================= Emergency services ================= -->
+    <section class="section panel emergency" id="emergency" aria-labelledby="emergencyTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="emergencyTitle">Emergency services <span class="section-title-hi" lang="hi">आपातकालीन सेवाएँ</span></h2>
+        <p class="section-sub"><strong>JalDrishti does not dispatch emergency services</strong>, track ambulances or confirm that rescue teams are available. Tap a number to call the public service directly.</p>
+        <p class="section-sub" lang="hi">JalDrishti कोई आपातकालीन सेवा नहीं भेजता। सीधे कॉल करने के लिए नंबर पर टैप करें।</p>
+      </div>
+      <ul class="emergency-list">
+        <li class="emergency-card emergency-card--primary">
+          <a class="emergency-tel" href="tel:112" aria-label="Call 112, emergency response">112</a>
+          <div>
+            <h3 class="contact-name">Emergency response <span class="contact-name-hi" lang="hi">आपातकालीन सहायता</span></h3>
+            <p class="contact-role">Dial 112 (MP Police ERSS): police, with links to fire (101) and health (108). 24/7 in all districts.</p>
+            <a class="contact-source" href="https://dial112.mppolice.gov.in/" target="_blank" rel="noopener">Source: dial112.mppolice.gov.in</a>
+          </div>
+        </li>
+        <li class="emergency-card">
+          <a class="emergency-tel" href="tel:108" aria-label="Call 108, ambulance">108</a>
+          <div>
+            <h3 class="contact-name">Ambulance <span class="contact-name-hi" lang="hi">एम्बुलेंस</span></h3>
+            <p class="contact-role">Emergency ambulance service.</p>
+            <a class="contact-source" href="https://bhopal.nic.in/en/helpline/" target="_blank" rel="noopener">Source: District Bhopal helplines</a>
+          </div>
+        </li>
+        <li class="emergency-card">
+          <a class="emergency-tel" href="tel:101" aria-label="Call 101, fire service">101</a>
+          <div>
+            <h3 class="contact-name">Fire service <span class="contact-name-hi" lang="hi">अग्निशमन</span></h3>
+            <p class="contact-role">Fire emergency.</p>
+            <a class="contact-source" href="https://bhopal.nic.in/en/helpline/" target="_blank" rel="noopener">Source: District Bhopal helplines</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+      <!-- General precautions -->
+      <section class="section panel" id="guidance" aria-labelledby="guidanceTitle">
+        <div class="section-head">
+          <h2 class="section-title" id="guidanceTitle">General precautions at ghats <span class="section-title-hi" lang="hi">घाट पर सावधानियाँ</span></h2>
+          <p class="section-sub">Common-sense precautions, not an official advisory. Always follow instructions from police, BMC staff and on-site volunteers.</p>
+        </div>
+        <ul class="guidance-grid">
+          <li><strong>Stay behind barricades</strong> and inside marked bathing limits. Do not enter deep or unmarked water.</li>
+          <li><strong>Watch your step.</strong> Ghat steps can be slippery with algae and mud, especially near the water's edge.</li>
+          <li><strong>Keep children close</strong> and never leave them unattended near the water.</li>
+          <li><strong>Avoid crowding</strong> at the water's edge; use the marked entry and exit routes.</li>
+          <li><strong>Do not drink lake water.</strong> Past MPPCB readings often breached bathing limits; JalDrishti cannot tell you today's water quality.</li>
+          <li><strong>In an emergency, call 112</strong> and tell responders the ghat name and the nearest landmark.</li>
+        </ul>
+      </section>
+
+    <!-- Useful Contacts -->
+    <section class="section panel contacts" id="contacts" aria-labelledby="contactsTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="contactsTitle">Useful Contacts <span class="section-title-hi" lang="hi">जरूरी संपर्क</span></h2>
+        <p class="section-sub">
+          These are existing public contacts of government offices, listed on their official websites. They are <strong>not a dedicated JalDrishti helpline</strong>, and JalDrishti is not affiliated with them.
+        </p>
+        <p class="section-sub" lang="hi">
+          ये सरकारी कार्यालयों के मौजूदा सार्वजनिक संपर्क हैं, जो उनकी आधिकारिक वेबसाइटों पर दिए गए हैं। यह JalDrishti की कोई अलग हेल्पलाइन <strong>नहीं</strong> है।
+        </p>
+      </div>
+      <ul class="contact-list">
+        <li class="contact-card">
+          <h3 class="contact-name">Bhopal Municipal Corporation <span class="contact-name-hi" lang="hi">नगर पालिक निगम भोपाल</span></h3>
+          <p class="contact-role">Commissioner's office, Harshwardhan Complex, Mata Mandir, Bhopal</p>
+          <p class="contact-phones">
+            <a class="contact-tel" href="tel:+917552701222" aria-label="Call Bhopal Municipal Corporation, 0755-2701222">0755-2701222</a>
+          </p>
+          <a class="contact-source" href="https://bhopal.nic.in/en/public-utility/bhopal-municipal-corporation/" target="_blank" rel="noopener">Source: District Bhopal (bhopal.nic.in)</a>
+        </li>
+        <li class="contact-card">
+          <h3 class="contact-name">MP Pollution Control Board, Regional Office Bhopal <span class="contact-name-hi" lang="hi">म.प्र. प्रदूषण नियंत्रण बोर्ड, क्षेत्रीय कार्यालय भोपाल</span></h3>
+          <p class="contact-role">E-5, Paryavaran Parisar, Arera Colony, Bhopal: water-quality and pollution matters</p>
+          <p class="contact-phones">
+            <a class="contact-tel" href="tel:+917552466392" aria-label="Call MPPCB Regional Office Bhopal, 0755-2466392">0755-2466392</a>
+            <a class="contact-tel" href="tel:+917554278342" aria-label="Call MPPCB Regional Office Bhopal, 0755-4278342">0755-4278342</a>
+          </p>
+          <a class="contact-source" href="https://www.mppcb.mp.gov.in/pdf/PCBADDTEL14.pdf" target="_blank" rel="noopener">Source: MPPCB office address list (PDF)</a>
+        </li>
+        <li class="contact-card">
+          <h3 class="contact-name">Madhya Pradesh CM Helpline <span class="contact-name-hi" lang="hi">मुख्यमंत्री हेल्पलाइन</span></h3>
+          <p class="contact-role">State public grievance helpline</p>
+          <p class="contact-phones">
+            <a class="contact-tel" href="tel:181" aria-label="Call Madhya Pradesh CM Helpline, 181">181</a>
+          </p>
+          <a class="contact-source" href="https://bhopal.nic.in/en/helpline/" target="_blank" rel="noopener">Source: District Bhopal helplines (bhopal.nic.in)</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ================= Chhath Puja ghat readiness (local demo tools) ================= -->
+    <section class="section chhath" id="chhath" aria-labelledby="chhathTitle">
+      <div class="chhath-intro panel">
+        <figure class="chhath-photo" id="chhathPhoto">
+          <img src="assets/chhath-arghya-yamuna-ghat-delhi.jpg" width="1280" height="830" loading="lazy" decoding="async"
+               alt="A devotee in a red and gold sari holds a bamboo soop basket with a coconut and marigolds while offering arghya during Chhath celebrations."
+               onerror="this.closest('.chhath-photo').classList.add('is-fallback'); this.remove();">
+          <figcaption>
+            Chhath arghya at Yamuna Ghat, <strong>Delhi</strong> (27 Oct 2025). Photo by
+            <a href="https://commons.wikimedia.org/wiki/File:Devotee_Offering_Arghya_during_Chhath_Celebrations.jpg" target="_blank" rel="noopener">Goutam1962</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>, via Wikimedia Commons. Not a Bhopal ghat.
+          </figcaption>
+        </figure>
+        <div class="chhath-text">
+          <div class="sunrise" aria-hidden="true"><span class="sunrise-sun"></span><span class="sunrise-water"></span></div>
+          <h2 class="section-title" id="chhathTitle">Chhath Puja ghat readiness <span class="section-title-hi" lang="hi">छठ पूजा घाट तैयारी</span></h2>
+          <p class="section-sub">
+            Planning tools for ghat-side safety: a readiness checklist, a list of additional ghats, a resource directory and an incident log.
+          </p>
+          <div class="demo-notice" role="note">
+            <strong>Local demo records.</strong> Everything you enter here is saved only in this browser (localStorage). It is not shared, not sent to BMC or any authority, and not verified by anyone. It is kept separate from the 2023–2025 historical water-quality dataset.
+            <span lang="hi">यहाँ दर्ज जानकारी केवल इसी ब्राउज़र में सहेजी जाती है; यह किसी अधिकारी को नहीं भेजी जाती।</span>
+          </div>
+          <p class="storage-status" id="storageStatus" role="status"></p>
+        </div>
+      </div>
+
+      <!-- Readiness checklist -->
+      <div class="panel ops-block" id="readiness" aria-labelledby="readinessTitle">
+        <div class="section-head section-head--row">
+          <div>
+            <h3 class="ops-title" id="readinessTitle">Readiness checklist <span class="section-title-hi" lang="hi">तैयारी सूची</span></h3>
+            <p class="section-sub">Track each safety item as Pending, In progress or Verified. “Verified” here means verified by the person using this browser, not by an authority.</p>
+          </div>
+          <label class="select-wrap ops-ghat-picker">
+            <span class="select-label">Ghat</span>
+            <select id="checklistGhat"></select>
+          </label>
+        </div>
+        <p class="checklist-summary" id="checklistSummary" aria-live="polite"></p>
+        <ul class="checklist" id="checklistList"></ul>
+        <div class="ops-actions">
+          <button class="btn btn-ghost btn-sm" type="button" id="checklistReset">Reset this ghat&rsquo;s checklist</button>
+        </div>
+      </div>
+
+      <div class="ops-grid">
+        <!-- Add Ghat -->
+        <div class="panel ops-block" id="addGhat" aria-labelledby="addGhatTitle">
+          <h3 class="ops-title" id="addGhatTitle">Add a ghat <span class="section-title-hi" lang="hi">घाट जोड़ें</span></h3>
+          <p class="section-sub">For immersion or Chhath sites not in the historical dataset. New ghats get <strong>no water-quality score and no CRI rank</strong>: no monitoring data exists for them here.</p>
+          <form class="ops-form" id="ghatForm" novalidate>
+            <input type="hidden" id="ghatEditId">
+            <div class="field">
+              <label for="ghatName">Ghat name <span class="req">(required)</span></label>
+              <input id="ghatName" name="ghatName" type="text" maxlength="80" autocomplete="off" required aria-describedby="ghatNameErr">
+              <p class="field-error" id="ghatNameErr"></p>
+            </div>
+            <div class="field">
+              <label for="ghatWater">Water body <span class="req">(required)</span></label>
+              <select id="ghatWater" name="ghatWater" required aria-describedby="ghatWaterErr">
+                <option value="">Select…</option>
+                <option>Upper Lake (बड़ा तालाब)</option>
+                <option>Lower Lake (छोटा तालाब)</option>
+                <option>Shahpura Lake</option>
+                <option>Kaliyasot / Kerwa area</option>
+                <option>Artificial kund / tank</option>
+                <option>Other</option>
+              </select>
+              <p class="field-error" id="ghatWaterErr"></p>
+            </div>
+            <div class="field">
+              <label for="ghatArea">Locality / ward <span class="opt">(optional)</span></label>
+              <input id="ghatArea" name="ghatArea" type="text" maxlength="80" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="ghatFootfall">Expected footfall <span class="opt">(optional, people)</span></label>
+              <input id="ghatFootfall" name="ghatFootfall" type="number" min="0" max="1000000" step="1" inputmode="numeric" aria-describedby="ghatFootfallErr">
+              <p class="field-error" id="ghatFootfallErr"></p>
+            </div>
+            <div class="field field--wide">
+              <label for="ghatNotes">Notes <span class="opt">(optional, max 300 characters)</span></label>
+              <textarea id="ghatNotes" name="ghatNotes" rows="2" maxlength="300"></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="ghatSubmit">Add ghat</button>
+              <button class="btn btn-ghost" type="button" id="ghatCancel" hidden>Cancel edit</button>
+            </div>
+            <p class="form-status" id="ghatStatus" role="status" aria-live="polite"></p>
+          </form>
+          <h4 class="ops-subtitle">Added ghats (local demo)</h4>
+          <ul class="record-list" id="ghatList"></ul>
+        </div>
+
+        <!-- Incident report -->
+        <div class="panel ops-block" id="incident" aria-labelledby="incidentTitle">
+          <h3 class="ops-title" id="incidentTitle">Incident log <span class="section-title-hi" lang="hi">घटना दर्ज करें</span></h3>
+          <div class="emergency-callout" role="note">
+            <strong>Emergency? Call <a href="tel:112">112</a> now.</strong> This form does not alert police, ambulance, fire, divers or BMC. Reports stay in this browser only.
+          </div>
+          <form class="ops-form" id="incidentForm" novalidate>
+            <div class="field">
+              <label for="incGhat">Ghat <span class="req">(required)</span></label>
+              <select id="incGhat" required aria-describedby="incGhatErr"></select>
+              <p class="field-error" id="incGhatErr"></p>
+            </div>
+            <div class="field">
+              <label for="incType">Type <span class="req">(required)</span></label>
+              <select id="incType" required aria-describedby="incTypeErr">
+                <option value="">Select…</option>
+                <option>Slippery or broken steps</option>
+                <option>Lighting failure</option>
+                <option>Missing or damaged barrier</option>
+                <option>Deep-water warning missing</option>
+                <option>Crowding / congestion</option>
+                <option>Injury needing first aid</option>
+                <option>Sanitation or waste problem</option>
+                <option>Visible water pollution</option>
+                <option>Other</option>
+              </select>
+              <p class="field-error" id="incTypeErr"></p>
+            </div>
+            <div class="field">
+              <label for="incTime">Time observed <span class="req">(required)</span></label>
+              <input id="incTime" type="datetime-local" required aria-describedby="incTimeErr">
+              <p class="field-error" id="incTimeErr"></p>
+            </div>
+            <div class="field">
+              <label for="incContact">Your phone <span class="opt">(optional, 10 digits)</span></label>
+              <input id="incContact" type="tel" inputmode="tel" maxlength="14" autocomplete="tel" aria-describedby="incContactErr">
+              <p class="field-error" id="incContactErr"></p>
+            </div>
+            <div class="field field--wide">
+              <label for="incDesc">What happened? <span class="req">(required, 10–500 characters)</span></label>
+              <textarea id="incDesc" rows="3" maxlength="500" required aria-describedby="incDescErr"></textarea>
+              <p class="field-error" id="incDescErr"></p>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Save to local log</button>
+            </div>
+            <p class="form-status" id="incStatus" role="status" aria-live="polite"></p>
+          </form>
+          <h4 class="ops-subtitle">Logged incidents (local demo, not sent)</h4>
+          <ul class="record-list" id="incidentList"></ul>
+        </div>
+      </div>
+
+      <!-- Resource directory -->
+      <div class="panel ops-block" id="resources" aria-labelledby="resourcesTitle">
+        <h3 class="ops-title" id="resourcesTitle">Resource directory <span class="section-title-hi" lang="hi">संसाधन सूची</span></h3>
+        <p class="section-sub">Volunteers, workers, first-aid points, divers and rescue teams for each ghat. JalDrishti lists an entry only with an official source. No verified roster has been published for 2026 yet, so these lists are intentionally empty.</p>
+        <ul class="resource-grid" id="resourceGrid"></ul>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <!-- Site footer (shared across pages) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-about">
+        <p class="footer-brand">JalDrishti <span lang="hi">जलदृष्टि</span></p>
+        <p>Independent decision-support prototype for Claude Impact Lab Bhopal 2026, Track 2: Visarjan Ghat Watch.</p>
+        <p>Not an official website of the Government of Madhya Pradesh, BMC, MPPCB or CPCB. All water-quality figures are historical MPPCB readings from 2023–2025 and do not describe current conditions.</p>
+      </div>
+      <nav class="footer-col" aria-label="Footer">
+        <h2 class="footer-heading">Pages</h2>
+        <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="analysis.html">Analysis</a></li>
+            <li><a href="safety.html">Safety</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2 class="footer-heading">Project</h2>
+        <ul class="footer-list">
+          <li><a href="https://github.com/adityasoni-0555/jaldrishti-bhopal-2026" target="_blank" rel="noopener">Source code on GitHub</a></li>
+          <li><a href="https://github.com/adityasoni-0555/jaldrishti-bhopal-2026/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li>
+          <li><a href="analysis.html#sources">Data sources</a></li>
+          <li><a href="analysis.html#methodology">Methodology</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-credits">
+        <h2 class="footer-heading">Image credits</h2>
+        <p>“<a href="https://commons.wikimedia.org/wiki/File:Upper_lake,_bhopal_02.jpg" target="_blank" rel="noopener">Upper lake, bhopal 02</a>” by Darkknight7213, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>. Place context only; it does not depict a monitored ghat or its water quality.</p>
+        <p>“<a href="https://commons.wikimedia.org/wiki/File:Devotee_Offering_Arghya_during_Chhath_Celebrations.jpg" target="_blank" rel="noopener">Devotee Offering Arghya during Chhath Celebrations</a>” by Goutam1962, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>. Taken at Yamuna Ghat, Delhi, not in Bhopal.</p>
+      </div>
+    </div>
+    <p class="footer-base">JalDrishti (<span lang="hi">जलदृष्टि</span>) · Claude Impact Lab Bhopal 2026 · Track 2: Visarjan Ghat Watch</p>
+  </footer>
+
+  <script src="site.js"></script>
+  <script src="data.js"></script>
+  <script src="ghat-ops.js"></script>
+</body>
+</html>

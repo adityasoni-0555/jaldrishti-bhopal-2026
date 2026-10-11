@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comparisons, year-by-year readings, Composite Risk Index method, data sources and limitations for JalDrishti.">
+  <meta name="theme-color" content="#0b1f3a">
+  <title>Analysis | JalDrishti: Bhopal Visarjan Ghat Watch</title>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/source-sans-3-latin-wght-normal.woff2" crossorigin>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c-4.6 6.2-9 11.4-9 16.4A9 9 0 0 0 25 19.4C25 14.4 20.6 9.2 16 3z' fill='%230f766e'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Site header (shared across pages) -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html" aria-label="JalDrishti home">
+        <svg class="nav-logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M16 3c-4.6 6.2-9 11.4-9 16.4A9 9 0 0 0 25 19.4C25 14.4 20.6 9.2 16 3z" fill="currentColor" opacity=".9"/>
+          <path d="M10.5 20.5c1.8 1.4 3.6 1.4 5.5 0s3.7-1.4 5.5 0" fill="none" stroke="#0b1f3a" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-brand-text"><span class="nav-brand-name">JalDrishti <span class="nav-brand-hi" lang="hi">जलदृष्टि</span></span><span class="nav-brand-tag">Visarjan Ghat Watch · Bhopal</span></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="analysis.html" class="is-active" aria-current="page">Analysis</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+        <a class="nav-emergency" href="tel:112" aria-label="Call 112, emergency response">Emergency <strong>112</strong></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="emergency-strip" role="note">
+    <span><strong>Emergency?</strong> Call <a href="tel:112">112</a> · Ambulance <a href="tel:108">108</a> · Fire <a href="tel:101">101</a></span>
+    <span class="emergency-strip-note">JalDrishti does not dispatch emergency services.</span>
+  </div>
+
+  <main id="main" tabindex="-1">
+
+  <section class="page-hero" aria-labelledby="pageTitle">
+    <div class="page-hero-inner">
+      <p class="page-kicker">Comparisons, trends and method</p>
+      <h1 class="page-title" id="pageTitle">Analysis <span class="page-title-hi" lang="hi">विश्लेषण</span></h1>
+      <p class="page-lede">How the seven ghats compare, how readings changed across the 2023, 2024 and 2025 festival seasons, and exactly how the provisional index is built.</p>
+      <p class="data-badge"><span class="data-badge-dot" aria-hidden="true"></span>Historical MPPCB readings, 2023–2025 · not live monitoring</p>
+    </div>
+  </section>
+
+    <div class="main-container">
+      <div class="error-state" id="analysisError" role="alert" hidden>The embedded analysis data (data.js) could not be loaded.</div>
+
+      <nav class="page-toc" aria-label="On this page">
+        <a href="#basin">Basin compliance</a>
+        <a href="#comparison">Ghat comparison</a>
+        <a href="#trends">Year-by-year readings</a>
+        <a href="#lagged">Post-immersion impact</a>
+        <a href="#methodology">CRI method</a>
+        <a href="#sources">Data sources</a>
+        <a href="#limitations">Limitations</a>
+      </nav>
+
+      <section class="section" id="basin" aria-labelledby="basinTitle">
+        <div class="section-head">
+          <h2 class="section-title" id="basinTitle">Basin compliance at a glance <span class="section-title-hi" lang="hi">समग्र अनुपालन</span></h2>
+          <p class="section-sub">All seven ghats combined, 2023–2025, against CPCB Class B. Counts exclude below-detection and not-sampled readings.</p>
+        </div>
+        <ul class="stat-grid">
+          <li class="stat-tile stat-tile--alert"><span class="stat-value" id="anDo">—</span><span class="stat-label">DO tests below 5.0 mg/l</span></li>
+          <li class="stat-tile stat-tile--alert"><span class="stat-value" id="anBod">—</span><span class="stat-label">BOD tests above 3.0 mg/l</span></li>
+          <li class="stat-tile"><span class="stat-value" id="anPh">—</span><span class="stat-label">pH tests outside 6.5–8.5</span></li>
+          <li class="stat-tile stat-tile--alert"><span class="stat-value" id="anZero">—</span><span class="stat-label">readings of zero dissolved oxygen</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="comparison" aria-labelledby="comparisonTitle">
+        <div class="section-head">
+          <h2 class="section-title" id="comparisonTitle">Ghat comparison <span class="section-title-hi" lang="hi">घाटों की तुलना</span></h2>
+          <p class="section-sub">Sub-scores are 0–100 before weighting. Measured columns come straight from the engine's parameter summaries.</p>
+        </div>
+        <div class="table-responsive panel-table">
+          <table class="data-table">
+            <caption class="visually-hidden">Seven ghats compared by CRI, sub-scores and measured indicators</caption>
+            <thead>
+              <tr>
+                <th scope="col">Rank</th><th scope="col">Ghat</th><th scope="col">CRI</th>
+                <th scope="col">Oxygen deficit <small>×0.40</small></th><th scope="col">Organic load <small>×0.30</small></th>
+                <th scope="col">Metal hazard <small>×0.20</small></th><th scope="col">Lagged impact <small>×0.10</small></th>
+                <th scope="col">DO tests &lt; 5.0</th><th scope="col">Mean BOD <small>mg/l</small></th><th scope="col">Peak lead <small>mg/l</small></th>
+              </tr>
+            </thead>
+            <tbody id="comparisonBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="trends" aria-labelledby="trendsTitle">
+        <div class="section-head">
+          <h2 class="section-title" id="trendsTitle">Year-by-year readings <span class="section-title-hi" lang="hi">वर्षवार रीडिंग</span></h2>
+          <p class="section-sub">Mean of the numeric MPPCB readings for each year, across Ganesh and Durga festivals and all phases (pre, during, after). <span class="legend-breach">Highlighted</span> cells breach the CPCB Class B limit (DO below 5.0 mg/l or BOD above 3.0 mg/l). n is the number of readings. These are historical averages, not a forecast.</p>
+        </div>
+        <div class="table-responsive panel-table">
+          <table class="data-table trend-table">
+            <caption class="visually-hidden">Mean dissolved oxygen and BOD per ghat for 2023, 2024 and 2025</caption>
+            <thead>
+              <tr>
+                <th scope="col" rowspan="2">Ghat</th>
+                <th scope="colgroup" colspan="3">Mean dissolved oxygen (mg/l)</th>
+                <th scope="colgroup" colspan="3">Mean BOD (mg/l)</th>
+              </tr>
+              <tr>
+                <th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th>
+                <th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th>
+              </tr>
+            </thead>
+            <tbody id="trendBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="lagged" aria-labelledby="laggedTitle">
+        <div class="section-head">
+          <h2 class="section-title" id="laggedTitle">Post-immersion (lagged) impact <span class="section-title-hi" lang="hi">विसर्जन के बाद का प्रभाव</span></h2>
+          <p class="section-sub">Paired festival events where the "after" reading worsened compared with "during" (BOD rose or DO fell). Full per-event citations are in each ghat's evidence panel on the dashboard.</p>
+        </div>
+        <div class="table-responsive panel-table">
+          <table class="data-table">
+            <caption class="visually-hidden">Lagged worsening events per ghat</caption>
+            <thead>
+              <tr><th scope="col">Ghat</th><th scope="col">Comparable pairs <small>(during &amp; after sampled)</small></th><th scope="col">Worsened after immersion</th><th scope="col">Lagged sub-score <small>(% worsened)</small></th><th scope="col">Examples (during → after)</th></tr>
+            </thead>
+            <tbody id="laggedBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="methodology" aria-labelledby="methodologyTitle">
+        <div class="section-head">
+          <h2 class="section-title" id="methodologyTitle">How the Composite Risk Index works <span class="section-title-hi" lang="hi">CRI पद्धति</span></h2>
+          <p class="section-sub">Statutory CPCB limits are kept separate from the provisional scoring choices made for this project.</p>
+        </div>
+        <div class="weights" aria-label="CRI weights">
+          <span class="weight weight-do" style="flex-grow:40">Oxygen deficit 40%</span>
+          <span class="weight weight-bod" style="flex-grow:30">Organic load 30%</span>
+          <span class="weight weight-metal" style="flex-grow:20">Metal 20%</span>
+          <span class="weight weight-lagged" style="flex-grow:10">Lagged 10%</span>
+        </div>
+        <div class="methodology-grid">
+        <div class="methodology-card methodology-card--statutory">
+          <span class="method-tag method-tag--official">Statutory · official</span>
+          <h3>1. Statutory Standards (Official Central Pollution Control Board)</h3>
+          <p>Under <strong>CPCB Class B (Outdoor Bathing Organised)</strong> criteria from <code>cpcb_water_quality_criteria.csv</code>:</p>
+          <ul>
+            <li><strong>Dissolved Oxygen (DO):</strong> Minimum &ge; 5.0 mg/l. Values &lt; 5.0 mg/l cause aquatic hypoxia. 0.0 mg/l is total biological anoxia.</li>
+            <li><strong>Biochemical Oxygen Demand (BOD):</strong> Maximum &le; 3.0 mg/l (5 days at 20&deg;C). Measures organic waste load consuming oxygen.</li>
+            <li><strong>pH:</strong> Permissible range 6.5 to 8.5.</li>
+          </ul>
+        </div>
+
+        <div class="methodology-card methodology-card--provisional">
+          <span class="method-tag method-tag--provisional">Provisional · under review</span>
+          <h3>2. Provisional Operational Composite Risk Index (CRI)</h3>
+          <p>Because the CPCB does not publish a composite multi-parameter index, this model was designed for BMC decision support:</p>
+          <p class="formula"><code>CRI = (0.40 &times; S_DO) + (0.30 &times; S_BOD) + (0.20 &times; S_Metal) + (0.10 &times; S_Lagged)</code></p>
+          <ul>
+            <li><strong>S_DO (40% Weight):</strong> <code>0.60 &times; (DO Violation Rate %) + 0.40 &times; (Zero DO Anoxia Rate %)</code></li>
+            <li><strong>S_BOD (30% Weight):</strong> <code>0.60 &times; (BOD Violation Rate %) + 0.40 &times; min(100, max(0, (Mean_BOD - 3.0)/10.0 &times; 100))</code>. <em>Excess ceiling of 10.0 mg/l represents BOD = 13.0 mg/l.</em></li>
+            <li><strong>S_Metal (20% Weight):</strong> <code>0.70 &times; (Detection Rate %) + 0.30 &times; (min(1.0, Peak_Lead / 1.5) &times; 100)</code>. <em>Lead ceiling of 1.5 mg/l represents a 15x exceedance of CPCB Schedule VI discharge limits (0.1 mg/l) and 150x exceedance of IS 10500 drinking limits (0.01 mg/l).</em></li>
+            <li><strong>S_Lagged (10% Weight):</strong> Percentage of paired festival events where post-immersion 'after' conditions deteriorated further.</li>
+          </ul>
+        </div>
+
+        <div class="methodology-card">
+          <span class="method-tag">Data quality</span>
+          <h3>3. Data Quality & Integrity Disclosures</h3>
+          <ul>
+            <li><strong>BDL (Below Detection Limit):</strong> Preserved as non-elevated trace detection. Never converted to zero or counted as missing.</li>
+            <li><strong>Missing Data:</strong> Excluded from compliance denominators and surfaced as explicit data gap alerts.</li>
+            <li><strong>Durga 2025 Missing Data:</strong> Bairagarh and Malikhedi lack Durga 2025 tables in the MPPCB report.</li>
+            <li><strong>Rani Kamlapati Site Ambiguity:</strong> Ganesh tables sampled an artificial kund; Durga tables sampled open lake water.</li>
+          </ul>
+        </div>
+      </div>
+      </section>
+
+      <section class="section panel sources" id="sources" aria-labelledby="sourcesTitle">
+        <h2 class="section-title" id="sourcesTitle">Data sources <span class="section-title-hi" lang="hi">डेटा स्रोत</span></h2>
+      <div class="sources-grid">
+        <div>
+          <h3>Monitoring evidence</h3>
+          <ul>
+            <li>MPPCB idol-immersion monitoring reports, 2023, 2024 and 2025 (Ganesh &amp; Durga Visarjan), parsed to <code>bhopal_ghats_2023_2025.csv</code>. Each parameter row in a ghat's evidence panel cites the report year and PDF page.</li>
+            <li>CPCB Water Quality Criteria, Class B (Outdoor Bathing, Organised): <code>cpcb_water_quality_criteria.csv</code>.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What this tool is not</h3>
+          <ul>
+            <li>Not real-time monitoring. All readings are historical (2023–2025) and cannot establish current water safety.</li>
+            <li>Not an official BMC, MPPCB or CPCB publication or endorsement. The CRI is a provisional planning method under review.</li>
+          </ul>
+        </div>
+      </div>
+        <ul class="source-links">
+          <li><a href="https://www.mppcb.mp.gov.in/proc/mon/Ganesh_and_Durga_visarjan_report-2025.pdf" target="_blank" rel="noopener">MPPCB Ganesh and Durga Visarjan Report 2025 (PDF)</a></li>
+          <li><a href="https://www.mppcb.mp.gov.in/proc/mon/Ganesh_and_Durga_visarjan_report-2024.pdf" target="_blank" rel="noopener">MPPCB Ganesh and Durga Visarjan Report 2024 (PDF)</a></li>
+          <li><a href="https://www.mppcb.mp.gov.in/proc/mon/Idol_immer._Report_23_CPCB.pdf" target="_blank" rel="noopener">MPPCB Idol Immersion Report 2023, CPCB format (PDF)</a></li>
+          <li><a href="https://cpcb.gov.in/water-quality-criteria/" target="_blank" rel="noopener">CPCB water quality criteria</a></li>
+        </ul>
+      </section>
+
+      <section class="section panel" id="limitations" aria-labelledby="limitationsTitle">
+        <h2 class="section-title" id="limitationsTitle">Limitations <span class="section-title-hi" lang="hi">सीमाएँ</span></h2>
+        <ul class="limit-list">
+          <li><strong>Historical, not live.</strong> Readings are from 2023–2025 and cannot establish water safety today. Real-time pre-immersion testing is still required.</li>
+          <li><strong>Missing records.</strong> The 2025 MPPCB report has no Durga tables for Bairagarh or Malikhedi; missing data is never treated as clean.</li>
+          <li><strong>Limited parameters.</strong> No bacteriological parameters and only four heavy metals (Pb, Cr, Cu, Zn) were reported; nothing else is estimated.</li>
+          <li><strong>Site ambiguity.</strong> Rani Kamlapati / Kamla Park: Ganesh tables sampled an artificial kund, Durga tables sampled open lake water (medium confidence).</li>
+          <li><strong>Provisional index.</strong> CRI weights and ceilings are planning choices under review, not regulatory standards.</li>
+          <li><strong>Year means are descriptive.</strong> Each year mixes festivals and phases, and some years have fewer readings (see n).</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- Site footer (shared across pages) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-about">
+        <p class="footer-brand">JalDrishti <span lang="hi">जलदृष्टि</span></p>
+        <p>Independent decision-support prototype for Claude Impact Lab Bhopal 2026, Track 2: Visarjan Ghat Watch.</p>
+        <p>Not an official website of the Government of Madhya Pradesh, BMC, MPPCB or CPCB. All water-quality figures are historical MPPCB readings from 2023–2025 and do not describe current conditions.</p>
+      </div>
+      <nav class="footer-col" aria-label="Footer">
+        <h2 class="footer-heading">Pages</h2>
+        <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="analysis.html">Analysis</a></li>
+            <li><a href="safety.html">Safety</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2 class="footer-heading">Project</h2>
+        <ul class="footer-list">
+          <li><a href="https://github.com/adityasoni-0555/jaldrishti-bhopal-2026" target="_blank" rel="noopener">Source code on GitHub</a></li>
+          <li><a href="https://github.com/adityasoni-0555/jaldrishti-bhopal-2026/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li>
+          <li><a href="analysis.html#sources">Data sources</a></li>
+          <li><a href="analysis.html#methodology">Methodology</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-credits">
+        <h2 class="footer-heading">Image credits</h2>
+        <p>“<a href="https://commons.wikimedia.org/wiki/File:Upper_lake,_bhopal_02.jpg" target="_blank" rel="noopener">Upper lake, bhopal 02</a>” by Darkknight7213, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>. Place context only; it does not depict a monitored ghat or its water quality.</p>
+        <p>“<a href="https://commons.wikimedia.org/wiki/File:Devotee_Offering_Arghya_during_Chhath_Celebrations.jpg" target="_blank" rel="noopener">Devotee Offering Arghya during Chhath Celebrations</a>” by Goutam1962, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener license">CC BY-SA 4.0</a>. Taken at Yamuna Ghat, Delhi, not in Bhopal.</p>
+      </div>
+    </div>
+    <p class="footer-base">JalDrishti (<span lang="hi">जलदृष्टि</span>) · Claude Impact Lab Bhopal 2026 · Track 2: Visarjan Ghat Watch</p>
+  </footer>
+
+  <script src="site.js"></script>
+  <script src="data.js"></script>
+  <script src="analysis.js"></script>
+</body>
+</html>
