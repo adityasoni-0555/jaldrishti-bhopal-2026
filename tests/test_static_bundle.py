@@ -105,6 +105,8 @@ class TestMultiPageSite(unittest.TestCase):
 
     def test_scripts_loaded_where_features_live(self):
         self.assertIn('src="app.js"', self.html["dashboard.html"])
+        self.assertIn('src="dashboard-charts.js"', self.html["dashboard.html"])
+        self.assertLess(self.html["dashboard.html"].index('src="app.js"'), self.html["dashboard.html"].index('src="dashboard-charts.js"'))
         self.assertIn('src="analysis.js"', self.html["analysis.html"])
         self.assertIn('src="ghat-ops.js"', self.html["safety.html"])
         for page, html in self.html.items():

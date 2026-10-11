@@ -156,6 +156,7 @@ function handleFilterChange() {
   currentGhatList = filtered;
   renderGhatCards(filtered);
   renderCriChart(filtered);
+  if (typeof window.onDashboardFilter === "function") window.onDashboardFilter(filtered);
 }
 
 function clearSearch() {

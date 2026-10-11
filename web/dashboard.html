@@ -90,33 +90,54 @@
         </div>
       </div>
 
-    <!-- Basin Overview KPI Cards -->
+    <!-- At a glance: donut charts -->
     <section class="section" id="overview" aria-labelledby="overviewTitle">
       <div class="section-head">
-        <h2 class="section-title" id="overviewTitle">Basin overview <span class="section-title-hi" lang="hi">जल-क्षेत्र सारांश</span></h2>
-        <p class="section-sub">Compliance against CPCB Class B outdoor-bathing limits, all seven ghats combined, 2023–2025.</p>
+        <h2 class="section-title" id="overviewTitle">At a glance <span class="section-title-hi" lang="hi">एक नज़र में</span></h2>
+        <p class="section-sub">Share of 2023–2025 MPPCB tests that missed the CPCB Class B limit, all seven ghats combined.</p>
+        <p class="glance-legend"><span class="legend-inline"><span class="key key-out" aria-hidden="true"></span>Outside limit</span><span class="legend-inline"><span class="key key-in" aria-hidden="true"></span>Within limit</span></p>
       </div>
-      <div class="metrics-grid" id="basinMetrics">
-        <div class="metric-card reveal">
-          <div class="metric-label">Dataset Analyzed</div>
-          <div class="metric-value" id="valTotalRecords">1,524</div>
-          <div class="metric-sub">7 Bhopal Ghats · 3 Years (2023–2025)</div>
+      <div class="glance-grid">
+        <div class="glance-tile">
+          <span class="glance-big" id="valTotalRecords">1,524</span>
+          <span class="glance-label">water-test records</span>
+          <span class="glance-meta">7 ghats · 2023–2025 · 13 parameters</span>
+          <span class="glance-meta">Heavy-metal tests: <strong id="valMetals">480</strong> (Pb, Cr, Cu, Zn)</span>
+          <span class="glance-meta glance-hist">Historical readings, not live monitoring</span>
         </div>
-        <div class="metric-card metric-card--alert reveal">
-          <div class="metric-label">Dissolved Oxygen Non-Compliance</div>
-          <div class="metric-value text-danger" id="valDoViol">36.2%</div>
-          <div class="metric-sub">42 of 116 tests &lt; 5.0 mg/l (4x Zero DO anoxia)</div>
-        </div>
-        <div class="metric-card metric-card--alert reveal">
-          <div class="metric-label">BOD Organic Non-Compliance</div>
-          <div class="metric-value text-warning" id="valBodViol">89.3%</div>
-          <div class="metric-sub">100 of 112 tests &gt; 3.0 mg/l (Mean: 6.61 mg/l)</div>
-        </div>
-        <div class="metric-card reveal">
-          <div class="metric-label">Heavy Metal Tests Evaluated</div>
-          <div class="metric-value text-primary" id="valMetals">480</div>
-          <div class="metric-sub">Pb, Cr, Cu, Zn (174 BDL, 258 detected, Peak Pb: 1.77)</div>
-        </div>
+        <figure class="donut-card">
+          <div class="donut" id="donutDo" role="img" aria-label="Dissolved oxygen compliance">
+            <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle class="donut-track" cx="60" cy="60" r="48"/><circle class="donut-value" cx="60" cy="60" r="48" stroke-dasharray="0 302"/></svg>
+            <span class="donut-center"><strong id="valDoViol">36.2%</strong><small>outside</small></span>
+          </div>
+          <figcaption>
+            <span class="donut-title">Dissolved oxygen <span lang="hi">घुलित ऑक्सीजन</span></span>
+            <span class="donut-limit">Limit: at least 5.0 mg/l</span>
+            <ul class="donut-legend" data-legend-for="donutDo"></ul>
+          </figcaption>
+        </figure>
+        <figure class="donut-card">
+          <div class="donut" id="donutBod" role="img" aria-label="BOD compliance">
+            <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle class="donut-track" cx="60" cy="60" r="48"/><circle class="donut-value" cx="60" cy="60" r="48" stroke-dasharray="0 302"/></svg>
+            <span class="donut-center"><strong id="valBodViol">89.3%</strong><small>outside</small></span>
+          </div>
+          <figcaption>
+            <span class="donut-title">BOD (organic load) <span lang="hi">बीओडी</span></span>
+            <span class="donut-limit">Limit: at most 3.0 mg/l</span>
+            <ul class="donut-legend" data-legend-for="donutBod"></ul>
+          </figcaption>
+        </figure>
+        <figure class="donut-card">
+          <div class="donut" id="donutPh" role="img" aria-label="pH compliance">
+            <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle class="donut-track" cx="60" cy="60" r="48"/><circle class="donut-value" cx="60" cy="60" r="48" stroke-dasharray="0 302"/></svg>
+            <span class="donut-center"><strong id="valPhViol">5.22%</strong><small>outside</small></span>
+          </div>
+          <figcaption>
+            <span class="donut-title">pH</span>
+            <span class="donut-limit">Limit: 6.5 to 8.5</span>
+            <ul class="donut-legend" data-legend-for="donutPh"></ul>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -194,47 +215,11 @@
       </div>
     </section>
 
-    <!-- CRI Composition Chart -->
-    <section class="section panel" id="composition" aria-labelledby="chartTitle">
-      <div class="section-head section-head--row">
-        <div>
-          <h2 class="section-title" id="chartTitle">What drives each ghat's CRI <span class="section-title-hi" lang="hi">जोखिम घटक</span></h2>
-          <p class="section-sub">Provisional CRI (0–100) split into its weighted components: 0.40 &times; oxygen deficit + 0.30 &times; organic load + 0.20 &times; metal hazard + 0.10 &times; lagged impact. Follows the search, filters and sort below.</p>
-        </div>
-        <ul class="chart-legend" aria-label="Chart legend">
-          <li><span class="swatch swatch-do"></span>Oxygen deficit (40%)</li>
-          <li><span class="swatch swatch-bod"></span>Organic load (30%)</li>
-          <li><span class="swatch swatch-metal"></span>Metal hazard (20%)</li>
-          <li><span class="swatch swatch-lagged"></span>Lagged impact (10%)</li>
-        </ul>
-      </div>
-      <div class="cri-chart" id="criChart" role="list" aria-label="Composite Risk Index composition by ghat"></div>
-      <div class="cri-axis-row" aria-hidden="true">
-        <span></span>
-        <div class="cri-axis">
-          <span style="left:0%">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100</span>
-        </div>
-        <span></span>
-      </div>
-      <div class="chart-tooltip" id="chartTooltip" role="tooltip" hidden></div>
-      <details class="chart-table-toggle">
-        <summary>View chart data as a table</summary>
-        <div class="table-responsive">
-          <table>
-            <thead>
-              <tr><th scope="col">Rank</th><th scope="col">Ghat</th><th scope="col">Oxygen sub-score</th><th scope="col">Organic sub-score</th><th scope="col">Metal sub-score</th><th scope="col">Lagged sub-score</th><th scope="col">CRI</th></tr>
-            </thead>
-            <tbody id="chartTableBody"></tbody>
-          </table>
-        </div>
-      </details>
-    </section>
-
     <!-- Interactive Search, Filter & Sort Controls -->
     <section class="section" id="ranking" aria-labelledby="rankingTitle">
       <div class="section-head">
-        <h2 class="section-title" id="rankingTitle">Seven-ghat risk ranking <span class="section-title-hi" lang="hi">घाटवार जोखिम रैंकिंग</span></h2>
-        <p class="section-sub">Rank is fixed by the analytical engine's CRI; sorting only changes display order.</p>
+        <h2 class="section-title" id="rankingTitle">Ghat ranking <span class="section-title-hi" lang="hi">घाटवार जोखिम रैंकिंग</span></h2>
+        <p class="section-sub">Search or filter to update the charts below. Rank is fixed by the engine's CRI; sorting only changes display order.</p>
       </div>
 
       <div class="controls-bar" role="search">
@@ -289,11 +274,98 @@
         <span class="sort-indicator" id="sortLabel">Ordered by Composite Risk Index (CRI)</span>
       </div>
 
-      <!-- Ranked Ghats Cards List -->
-      <div class="ghats-list" id="ghatsList">
-        <div class="loading-state">Loading analytical engine results from data_output/analysis_results.json...</div>
+
+      <!-- Risk ranking bar chart -->
+      <div class="panel chart-panel" id="riskPanel">
+        <div class="chart-head">
+          <div>
+            <h3 class="chart-title">Provisional risk score by ghat <span class="section-title-hi" lang="hi">जोखिम स्कोर</span></h3>
+            <p class="chart-sub">Composite Risk Index, 0–100. A higher score means more historical non-compliance. Click a bar for the evidence.</p>
+          </div>
+          <ul class="tier-legend" aria-label="Tier colours">
+            <li><span class="key tc-2" aria-hidden="true"></span>Tier 2: High</li>
+            <li><span class="key tc-3" aria-hidden="true"></span>Tier 3: Moderate</li>
+            <li><span class="key tc-4" aria-hidden="true"></span>Tier 4: Low relative</li>
+          </ul>
+        </div>
+        <ul class="hbar-chart hbar-chart--risk" id="riskChart"></ul>
+        <div class="hbar-axis" aria-hidden="true"><span></span><span class="hbar-axis-scale"><span style="left:0%">0</span><span style="left:50%">50</span><span style="left:100%">100</span></span><span></span></div>
+        <p class="chart-note" id="chartFilterNote" aria-live="polite"></p>
       </div>
+
+      <!-- Key indicators: three simple bar charts -->
+      <div class="mini-grid">
+        <div class="panel chart-panel">
+          <h3 class="chart-title">Low-oxygen tests</h3>
+          <p class="chart-sub">% of dissolved-oxygen tests below 5.0 mg/l</p>
+          <ul class="hbar-chart hbar-chart--mini" id="chartDo"></ul>
+          <div class="hbar-axis" aria-hidden="true"><span></span><span class="hbar-axis-scale"><span style="left:0%">0%</span><span style="left:100%">100%</span></span><span></span></div>
+        </div>
+        <div class="panel chart-panel">
+          <h3 class="chart-title">Mean BOD (mg/l)</h3>
+          <p class="chart-sub">Average organic load. <span class="limit-key" aria-hidden="true"></span> CPCB limit 3.0 mg/l</p>
+          <ul class="hbar-chart hbar-chart--mini" id="chartBod"></ul>
+          <div class="hbar-axis" aria-hidden="true"><span></span><span class="hbar-axis-scale"><span style="left:0%">0</span><span class="axis-limit" id="bodLimitLabel" style="left:30%">3.0</span><span style="left:100%" id="bodAxisMax">10</span></span><span></span></div>
+        </div>
+        <div class="panel chart-panel">
+          <h3 class="chart-title">Peak lead (mg/l)</h3>
+          <p class="chart-sub">Highest lead reading. Class B sets no lead limit; shown for comparison.</p>
+          <ul class="hbar-chart hbar-chart--mini" id="chartPb"></ul>
+          <div class="hbar-axis" aria-hidden="true"><span></span><span class="hbar-axis-scale"><span style="left:0%">0</span><span style="left:100%" id="pbAxisMax">2</span></span><span></span></div>
+        </div>
+      </div>
+
+      <!-- Ranked Ghats Cards List (collapsed by default) -->
+      <details class="panel fold cards-fold" id="cardsFold">
+        <summary class="fold-summary">
+          <span class="fold-title">Detailed ghat cards</span>
+          <span class="fold-hint">Measured values, sub-scores, data gaps, interventions and evidence · opens automatically when you search</span>
+        </summary>
+        <div class="ghats-list" id="ghatsList">
+          <div class="loading-state">Loading analytical engine results from data_output/analysis_results.json...</div>
+        </div>
+      </details>
     </section>
+
+    <!-- CRI Composition Chart -->
+    <details class="section panel fold" id="composition">
+      <summary class="fold-summary">
+        <span class="fold-title" id="chartTitle">What makes up each score <span class="section-title-hi" lang="hi">जोखिम घटक</span></span>
+        <span class="fold-hint">Advanced: the four weighted parts of the CRI for each ghat</span>
+      </summary>
+      <div class="section-head section-head--row">
+        <div>
+          <p class="section-sub">Provisional CRI (0–100) split into its weighted components: 0.40 &times; oxygen deficit + 0.30 &times; organic load + 0.20 &times; metal hazard + 0.10 &times; lagged impact. Follows the search, filters and sort below.</p>
+        </div>
+        <ul class="chart-legend" aria-label="Chart legend">
+          <li><span class="swatch swatch-do"></span>Oxygen deficit (40%)</li>
+          <li><span class="swatch swatch-bod"></span>Organic load (30%)</li>
+          <li><span class="swatch swatch-metal"></span>Metal hazard (20%)</li>
+          <li><span class="swatch swatch-lagged"></span>Lagged impact (10%)</li>
+        </ul>
+      </div>
+      <div class="cri-chart" id="criChart" role="list" aria-label="Composite Risk Index composition by ghat"></div>
+      <div class="cri-axis-row" aria-hidden="true">
+        <span></span>
+        <div class="cri-axis">
+          <span style="left:0%">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100</span>
+        </div>
+        <span></span>
+      </div>
+      <div class="chart-tooltip" id="chartTooltip" role="tooltip" hidden></div>
+      <details class="chart-table-toggle">
+        <summary>View chart data as a table</summary>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr><th scope="col">Rank</th><th scope="col">Ghat</th><th scope="col">Oxygen sub-score</th><th scope="col">Organic sub-score</th><th scope="col">Metal sub-score</th><th scope="col">Lagged sub-score</th><th scope="col">CRI</th></tr>
+            </thead>
+            <tbody id="chartTableBody"></tbody>
+          </table>
+        </div>
+      </details>
+    </details>
+
 
       <p class="more-link"><a class="text-link" href="analysis.html">Detailed comparisons, year-by-year readings and methodology</a></p>
     </div>
@@ -457,5 +529,6 @@
   <script src="site.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
+  <script src="dashboard-charts.js"></script>
 </body>
 </html>
